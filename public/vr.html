@@ -74,6 +74,10 @@
         border: solid 1px #eee;
         border-radius:10px;
         overflow:hidden;
+        -webkit-backface-visibility: hidden;
+ -moz-backface-visibility: hidden;
+ -webkit-transform: translate3d(0, 0, 0);
+ -moz-transform: translate3d(0, 0, 0);
       }
       .loader{
       position: relative;
@@ -313,7 +317,7 @@ physics="gravity:-3;iteration:20"
       </a-assets>
       <a-entity id="block"></a-entity>
       <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera 
-                universal-controls="movementControls: gamepad, keyboard;movementAcceleration: 200"
+                universal-controls="movementAcceleration: 200"
                 kinematic-body
                 jump-ability
                 position="0 1000 0" >
