@@ -47,7 +47,7 @@ AFRAME.registerComponent('dynamic-room', {
   init: function () {
     var el = this.el;
     var params = this.getUrlParams();
-    var room = params.room.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"")
+    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"")
     var baseURLData = ""
      $(function() {
             console.log( "ready!" );
