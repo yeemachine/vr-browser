@@ -47,13 +47,13 @@ AFRAME.registerComponent('dynamic-room', {
   init: function () {
     var el = this.el;
     var params = this.getUrlParams();
-    var room = params.room.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"")
+    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"")
     var baseURLData = ""
      $(function() {
           $.ajax({
             dataType: "json",
             type: 'GET',
-            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&imagename='+room.replace(/\//g, "_")+'&width='+document.documentElement.clientWidth,
+            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+document.documentElement.clientWidth,
             success: function(response) {
               console.log(response)
                   
