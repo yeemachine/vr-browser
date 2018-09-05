@@ -1,0 +1,23 @@
+{
+  "name": "vr-browser",
+  "version": "0.0.1",
+  "description": "What am I about?",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "networked-aframe": "^0.6.1",
+    "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "6.9.x"
+  },
+  "repository": "https://github.com/yeemachine/vr-browser",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}

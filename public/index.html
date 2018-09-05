@@ -1,0 +1,329 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Chat Browser</title>
+    <meta name="description" content="VR Multi-user Browser">
+    <link href="/styles/index.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
+      body{
+        font-family: 'IBM Plex Mono', monospace;
+        background-color:black;
+        font-size:16px;
+      }
+      form, input{
+        font-family: 'IBM Plex Mono', monospace;
+        font-size:16px;
+        margin:0;
+      }
+      form{
+        margin: 0 10px 0 10px
+      }
+      input{
+        border-radius:5px;
+        padding:5px;
+        border:solid 2px white;
+        width:calc(100vw - 160px)
+      }
+      input:focus{
+        border-color:transparent;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+          transition: background-color 5000s ease-in-out 0s;
+          -webkit-text-fill-color: #000 !important;
+      }
+      input[type=text], textarea {
+        outline: none;
+        padding: 3px 0px 3px 3px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid #DDDDDD;
+      }
+
+      input[type=text]:focus, textarea:focus {
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        padding: 3px 0px 3px 3px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid rgba(81, 203, 238, 1);
+      }
+      .canvasContainer{
+        width:calc(100% - 24px);
+        height: calc(100% - 24px);
+        position:absolute;
+        top:10px;
+        left:10px;
+        border: solid 2px #666;
+        border-radius:10px;
+        overflow:hidden;
+      }
+      .loader{
+       position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        overflow-y: scroll;
+      }
+      .loader p{
+        display:inline-block;
+        font-size:24px;
+      }
+      .loader span{
+        font-size:16px;
+      }
+      .back{
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: rgba(255,255,255,0.5);
+        text-decoration: none;
+        background-color: #666;
+        z-index: 998;
+        width:100%;
+        padding:5px 0px 8px 0px;
+        display:flex;
+        justify-content:space-between;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      #switcher{
+        opacity:0.5;
+        pointer-events:none;
+      }
+      .back b{
+        font-weight:900;
+      }
+      .back span{
+        font-weight:900;
+      }
+      .back .contents{
+        display:flex;
+        align-items:center;
+      }
+      .contents a, .contents span{
+        margin-left: 5px;
+      }
+  
+      .back a{
+        text-decoration:none;
+        color:white;
+      }
+      .back a:hover{
+        color:rgba(81, 203, 238, 1);
+      }
+      
+      .back p{
+        padding:10px;
+        padding-top:5px;
+        padding-bottom:5px;
+        margin:0
+      }
+      .back p.divider{
+        padding-left:0;
+        padding-right:0;
+      }
+      .bar{
+        width:100%;
+        height:10px;
+        background: #666;
+        font-size: 5px;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+      .bar p{
+        margin:0;
+      }
+      .a-enter-vr-button{
+        border-radius:5px;
+      }
+      .search{
+        position: relative;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+        margin-right:10px;
+        color:white
+      }
+      .search:hover{
+        color:rgba(81, 203, 238, 1);
+        cursor:pointer
+      }
+      .info{
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:rgba(0,0,0,0.8);
+        z-index:997;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transform-origin:center;
+        opacity:0;
+        transform:scale3d(0.5 ,.5, 0.5);
+        transition: opacity 0.25s, transform 0.25s;
+        pointer-events:none
+      }
+      .info.selected{
+        opacity: 1;
+        pointer-events:all;
+        transform:scale3d(1, 1, 1)
+      }
+      .controls{
+        list-style:none;
+        color:white;
+        padding:0;
+      }
+      .controls li:first-child{
+        font-weight:900;
+        font-size:24px;
+        margin-bottom:24px;
+      }
+      #easyrtcErrorDialog{
+        display:none;
+      }
+
+    </style>
+  </head>
+  
+  <body class="hidden">
+    
+    <section class="canvasContainer">
+      <nav class="back">
+      <div class="contents">
+        <a id="switcher" href="/">
+        <p>
+          <span>VR</span>·<b>AR</b>
+        </p>
+      </a>
+
+        <form class="login-form noselect" method="GET" action="/vr.html">
+          <input id="url" type="text" name="room" placeholder="enter any url" required/>
+        </form>
+
+      </div>
+        <i class="material-icons search">
+        help_outline
+        </i>
+      </nav>
+      <div class="loader">
+              <div class="block">
+   
+            <p>
+              <b>VR-Browser</b> is a response to the action of browsing the internet alone. Instead of looking at webpages in solitude, users can experience a sort of communal browsing when connected in <b>VR-Browser</b>. 
+            This platform represents websites in three dimensions, making the act of browsing content an atypical spatial exercise. 
+          Once the user enters a URL, a screenshot of the website is taken, split into pieces, and used to generate a Minecraft-like world with those textures.
+            </p>
+                       <section>
+                 <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Fvricon.svg?1536027854569"/>
+          <h3>
+            +
+          </h3>
+          <br><br>
+          <div class="scene">
+            <div class="cube show-front">
+              <div class="cube__face cube__face--front">A-Frame</div>
+              <div class="cube__face cube__face--back"></div>
+              <div class="cube__face cube__face--right">Environment</div>
+              <div class="cube__face cube__face--left">Networked</div>
+              <div class="cube__face cube__face--top"></div>
+              <div class="cube__face cube__face--bottom"></div>
+            </div>
+          </div>
+          <br><br>
+          <h3>
+            +
+          </h3>
+          <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Ftalk.svg?1526138337118"/>
+          </section>  
+            <p>
+            Heavily inspired by VR Chat and just the general culture of MMORPG chats in general, users visiting the same websites will be able to interact and talk with each other. Each URL act as the server or chat room for any group of friends to explore. Just like most MMOs, the voice chat uses positional audio, giving the illusion of a true virtual space. 
+          </p>         
+          <p>
+            <b>VR-Browser</b> also has an alternate AR experience. This mode allows users to view the same world but from a top down perspective. In this mode, the you remain anonymous and invisible while you spy on other players on the map. 
+            <br><br>
+            Unfortunately, this application of Web AR is unable to do markerless tracking and still uses the older alternative.
+          To use AR with this project, please print out a <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
+          Hiro Marker</a> and show it to the camera.  
+          I am working towards a markerless version in the future.
+          </p>
+          <br>      
+          <ul>
+            <li><b>Special Thanks</b></li>
+            <li><a target="blank" href="https://www.erinsparling.com/">Erin Sparling</a></li>
+            <li>Hayden Lee—<a target="blank" href="https://github.com/networked-aframe/networked-aframe">Networked Aframe</a></li>
+            <li>Jerome Etienne—<a target="blank" href="https://github.com/jeromeetienne/AR.js">AR.js</a></li>
+            <li><a target="blank" href="https://github.com/brenden/node-webshot">Node Webshot</a></li>
+          </ul>
+        </div> 
+    </div>
+      
+      
+      <div class="info">
+        <ul class="controls">
+          <li><b>Controls</b></li>
+          <li>'wasd' to move</li>
+          <li>'mouse' to rotate camera</li>
+          <li>'esc' to show cursor</li>
+          <li>'spacebar' to jump</li>
+          <li> &nbsp;enable microphone for multiplayer</li>
+        </ul>
+      </div>
+    
+    </section>  
+      
+
+    <script>
+      // On mobile remove elements that are resource heavy
+
+      
+      $(function() {
+
+      $( "i.search" ).on( "click", function() {
+          if($(this).hasClass('selected') === true){
+            $(this).removeClass('selected')
+            $('.info').removeClass('selected')
+            $(this).html('help_outline')
+          }else{
+            console.log('click')
+            $(this).addClass('selected')
+            $('.info').addClass('selected')
+            $(this).html('highlight_off')
+          }
+      });
+       
+       
+        
+        
+        function ping(){
+       $.ajax({
+          url: 'https://screenshot-api.herokuapp.com/display',
+          success: function(result){
+             console.log('wake up api');
+          },     
+          error: function(result){
+              console.log('timeout/error');
+          }
+       });
+    }
+    ping();
+        
+      });
+    </script>
+  </body>
+</html>

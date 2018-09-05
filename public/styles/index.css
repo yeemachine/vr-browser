@@ -1,0 +1,105 @@
+a{
+  color:#666;
+/*   text-decoration:none */
+}
+a:hover{
+  color:#fff;
+}
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 400px;
+  padding:5%;
+}
+.block{
+  max-width:1000px;
+  width:80%;
+  height:auto;
+  margin-top: 80px;
+}
+.block img{
+  max-height:50vh;
+  width:200px;
+  padding:5%;
+}
+.block section{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content:center;
+}
+.cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px);
+  transition: transform 1s;
+}
+@keyframes turn{
+  0%{
+    transform: translateZ(-100px) rotateY(   0deg); 
+  }
+  100%{
+    transform: translateZ(-100px) rotateY(   -360deg); 
+  }
+}
+.cube.show-front  { 
+  animation: turn 5s infinite linear
+}
+
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #fff;
+  line-height: 200px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+}
+
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+li{
+  list-style-type:none;
+}
+.block ul{
+  width:100%;
+  margin:0;
+  padding:0;
+  padding-bottom:60px;  
+}
