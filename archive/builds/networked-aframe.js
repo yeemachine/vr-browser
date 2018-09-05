@@ -139,7 +139,7 @@
 
 	    var hasChanged = false;
 
-	    var newPosition = el.getAttribute('position');
+	    var newPosition = el.getAttribute('position')
 	    if (this.isLerpable('position') && !this.almostEqualVec3(this.lastPosition, newPosition)) {
 	      this.toPosition(this.lastPosition, newPosition);
 	      this.lastPosition = newPosition;
@@ -181,8 +181,8 @@
 	  toPosition: function toPosition(from, to) {
 	    this.lerpingPosition = true;
 	    this.startLerpTimePosition = this.now();
-	    this.startPosition = new THREE.Vector3(from.x, from.y, from.z);
-	    this.targetPosition = new THREE.Vector3(to.x, to.y, to.z);
+	    this.startPosition = new THREE.Vector3(from.x*0.05, from.y*0.05, from.z*0.05);
+	    this.targetPosition = new THREE.Vector3(to.x*0.05, to.y*0.05, to.z*0.05);
 	  },
 
 	  /**
@@ -656,7 +656,6 @@
 	      var hasPosition = componentData.hasOwnProperty('position');
 	      if (hasPosition) {
 	        var position = componentData.position;
-          
 	        entity.setAttribute('position', position);
 	      }
 	    }

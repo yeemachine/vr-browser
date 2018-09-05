@@ -47,13 +47,13 @@ AFRAME.registerComponent('dynamic-room', {
   init: function () {
     var el = this.el;
     var params = this.getUrlParams();
-    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"")
+    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"").toLowerCase()
     var baseURLData = ""
      $(function() {
           $.ajax({
             dataType: "json",
             type: 'GET',
-            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+document.documentElement.clientWidth,
+            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+1440,
             success: function(response) {
               console.log(response)
                   
@@ -62,6 +62,7 @@ AFRAME.registerComponent('dynamic-room', {
                 $("#ground").attr("material","src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
                 document.querySelector('#player').setAttribute('position', '0 50 0');
                 document.querySelector('#player').removeAttribute("static-body");
+                console.log(document.querySelector('#player').getAttribute('position'))
                 $(".loader").fadeOut( "slow", function() {
                   $(".loader").hide();
                 });  
@@ -290,6 +291,8 @@ AFRAME.registerComponent('dynamic-room', {
     console.info('Init networked-aframe with settings:', networkedComp);
     
     var website = 'http://'+room
+    
+    document.querySelector('a-scene').setAttribute('networked-scene', networkedComp);
     document.querySelector('#url').setAttribute('value', room);
     document.querySelector('#switcher').setAttribute('href', window.location.href.replace("vr.html", "ar.html"));
 

@@ -1,3 +1,12 @@
+@keyframes turn{
+  0%{
+    transform: translateZ(-100px) rotateY(0deg); 
+  }
+  100%{
+    transform: translateZ(-100px) rotateY(-360deg); 
+  }
+}
+
 a{
   color:#666;
 /*   text-decoration:none */
@@ -15,7 +24,8 @@ a:hover{
   max-width:1000px;
   width:80%;
   height:auto;
-  margin-top: 80px;
+  margin-top: 40px;
+  margin-bottom:40px;
 }
 .block img{
   max-height:50vh;
@@ -36,14 +46,8 @@ a:hover{
   transform: translateZ(-100px);
   transition: transform 1s;
 }
-@keyframes turn{
-  0%{
-    transform: translateZ(-100px) rotateY(   0deg); 
-  }
-  100%{
-    transform: translateZ(-100px) rotateY(   -360deg); 
-  }
-}
+
+
 .cube.show-front  { 
   animation: turn 5s infinite linear
 }
@@ -76,14 +80,11 @@ a:hover{
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 120px;
     color: #fff;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
- 
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
+     position: absolute;
     z-index: 1;
     width: 120px;
     bottom: 100%;
@@ -96,10 +97,39 @@ a:hover{
 }
 li{
   list-style-type:none;
+  font-size:24px;
+  margin-bottom:5px;
 }
+ul li:first-child{
+  margin-bottom:20px;
+}
+
 .block ul{
   width:100%;
   margin:0;
+  margin-top:40px;
   padding:0;
   padding-bottom:60px;  
+}
+.loader{
+  overflow-y:scroll;
+  align-items:flex-start;
+}
+
+      #switcher{
+        opacity:0.2;
+        pointer-events:none;
+      }
+      .back b{
+        opacity:1;
+      }
+
+input{
+        width:calc(100vw - 160px)
+      }
+
+h3{
+  font-size:30px;
+  padding-left:10px;
+  padding-right:10px;
 }

@@ -1,0 +1,196 @@
+      @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
+      body{
+        font-family: 'IBM Plex Mono', monospace;
+        background-color:#bbb;
+        font-size:14px;
+      }
+      form, input{
+        font-family: 'IBM Plex Mono', monospace;
+        font-size:14px;
+        margin:0;
+      }
+      form{
+        margin: 0 10px 0 10px
+      }
+      input{
+        border-radius:5px;
+        padding:5px;
+        border:solid 2px white;
+        width:calc(100vw - 400px)
+      }
+      input:focus{
+        border-color:transparent;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+          transition: background-color 5000s ease-in-out 0s;
+          -webkit-text-fill-color: #000 !important;
+      }
+      input[type=text], textarea {
+        outline: none;
+        padding: 5px 0px 5px 5px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid #DDDDDD;
+      }
+
+      input[type=text]:focus, textarea:focus {
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        padding: 5px 0px 5px 5px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid rgba(81, 203, 238, 1);
+      }
+      .canvasContainer{
+        width:calc(100% - 24px);
+        height: calc(100% - 24px);
+        position:absolute;
+        top:10px;
+        left:10px;
+/*         border: solid 1px #ccc; */
+        border-radius:10px;
+        overflow:hidden;
+         -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0)
+      }
+      .loader{
+      position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .loader p{
+        display:inline-block;
+        font-size:24px;
+      }
+      .loader span{
+        font-size:16px;
+      }
+      .back{
+        position: relative;
+        top: 0;
+        left: 0;
+        color: #666;
+        text-decoration: none;
+        background-color: #eee;
+        z-index: 998;
+        width:100%;
+        padding:5px 0px 8px 0px;
+        display:flex;
+        justify-content:space-between;
+      }
+      #switcher{
+        color:#666;
+        border-radius:5px;
+        margin-left:10px;
+      }
+      #switcher:hover{
+        background-color:rgba(0,0,0,0.1);
+      }
+      .back b{
+        font-weight:900;
+        opacity:0.2;        
+      }
+      .back span{
+        font-weight:900;
+      }
+      .back .contents{
+        display:flex;
+        align-items:center;
+      }
+      .contents a{
+        margin-left: 5px;
+      }
+  
+      .back a{
+        text-decoration:none;
+        color:white;
+      }
+      .back a:hover{
+        color:rgba(81, 203, 238, 1);
+      }
+      
+      .back p{
+        padding:10px;
+        padding-top:5px;
+        padding-bottom:5px;
+        margin:0
+      }
+      .back p.divider{
+        padding-left:0;
+        padding-right:0;
+      }
+      .bar{
+        width:100%;
+        height:10px;
+        background: #ddd;
+        font-size: 5px;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+      .bar p{
+        margin:0;
+      }
+      .a-enter-vr-button{
+        display:none;
+      }
+        .search{
+        position: relative;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+        margin-right:10px;
+        color:#666;
+        border-radius:5px;
+        padding:2px;
+      }
+      .search:hover{
+        background-color:rgba(0,0,0,0.1);
+        cursor:pointer
+      }
+      .info{
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:rgba(0,0,0,0.8);
+        z-index:997;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transform-origin:center;
+        opacity:0;
+        transform:scale3d(0.5 ,.5, 0.5);
+        transition: opacity 0.25s, transform 0.25s;
+        pointer-events:none
+      }
+      .info.selected{
+        opacity: 1;
+        pointer-events:all;
+        transform:scale3d(1, 1, 1)
+      }
+      .controls{
+        list-style:none;
+        color:white;
+        padding:0;
+      }
+      .controls li:first-child{
+        font-weight:900;
+        font-size:24px;
+        margin-bottom:24px;
+      }
+      #easyrtcErrorDialog{
+        display:none !important;
+      }
+      
