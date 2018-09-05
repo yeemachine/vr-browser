@@ -655,10 +655,7 @@
 	    value: function initPosition(entity, componentData) {
 	      var hasPosition = componentData.hasOwnProperty('position');
 	      if (hasPosition) {
-          var posX = componentData.position.x*.05
-          var posY = componentData.position.y*.05
-          var posZ = componentData.position.z*.05
-	        var position = {'x':posX,'y':posY,'z':posZ};
+	        var position = componentData.position;
           
 	        entity.setAttribute('position', position);
 	      }
