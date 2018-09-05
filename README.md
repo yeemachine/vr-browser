@@ -21,7 +21,7 @@ Click and use 'WASD' keys on desktop. Open it on a smartphone and use the device
 
 **AR.js**
 
-AR mode built with [AR.js](https://github.com/jeromeetienne/AR.js), a web based AR project that brings AR to Aframe. 
+AR mode built with [AR.js](https://github.com/jeromeetienne/AR.js), a library that brings AR to Aframe. 
 
 
 **Node Webshot**

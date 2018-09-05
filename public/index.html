@@ -306,22 +306,6 @@
             $(this).html('highlight_off')
           }
       });
-       
-       
-        
-        
-        function ping(){
-       $.ajax({
-          url: 'https://screenshot-api.herokuapp.com/display',
-          success: function(result){
-             console.log('wake up api');
-          },     
-          error: function(result){
-              console.log('timeout/error');
-          }
-       });
-    }
-    ping();
         
       });
     </script>
