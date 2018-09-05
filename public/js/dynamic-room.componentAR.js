@@ -195,7 +195,7 @@ AFRAME.registerComponent('dynamic-room', {
 
     
     
-    if (!params.room) {
+    if (!room) {
       window.alert('Please add a room name in the URL, eg. ?room=myroom');
     }
 
@@ -205,7 +205,7 @@ AFRAME.registerComponent('dynamic-room', {
     
     // Setup networked-scene
     var networkedComp = {
-      room: params.room.replace(/\//g, "-"),
+      room: room.replace(/\//g, "-"),
       adapter: 'easyrtc',
       audio: true
     };
