@@ -1,0 +1,422 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
+ body{
+/*         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif; */
+font-family: 'IBM Plex Mono', monospace;
+      
+}
+.loader{
+  color:white;
+}
+.login-page {
+  width: 360px;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  top:0;
+  margin: auto;
+      display: flex;
+    align-items: center;
+}
+h2{
+  display:none;
+}
+.form {
+  position: fixed;
+  z-index: 1;
+/*   max-width: 360px; */
+  margin: 0;
+  text-align: center;
+  top:450px;
+  right:200px;
+  width:calc(50vw - 90px);
+/*   height:fit-content; */
+    border: 2px solid #666;
+  border-radius: 5px;
+/*     transform: rotateX(60deg) rotateY(0deg) rotateZ(45deg); */
+}
+.form .bar{
+  background:#666
+}
+.ghost{
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  position:fixed;
+  top:0;
+  left:0;
+  display:block;
+  transform-origin:center;
+/*   transform: rotateX(60deg) rotateY(0deg) rotateZ(-45deg);
+ */
+}
+.ghost #name-ghost{
+  bottom:0;
+  position:absolute;
+}
+.ghost input{
+  background: rgba(255,255,255,0);
+    color:white;
+  border:0;
+  pointer-events:none;
+  display:block;
+    width:100vw;
+    opacity: 0.1;
+  text-align:center
+}
+.form input {
+  outline: 0;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: calc(24px);
+  background: rgba(255,255,255,0);
+  border-bottom: 2px solid #191919;
+  color:rgba(255,255,255,1);
+  font-family: 'IBM Plex Mono', monospace;
+}
+#url{
+    text-transform:lowercase
+}
+input:focus{
+  color:white;
+  border-color:#3f3f3f;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #fff !important;
+}
+form{
+  display:block;
+  text-align:left;
+  padding: 30px;
+
+  background-color:rgba(0,0,0,0.9);
+  margin:0;
+}
+
+.form button {
+  display:inline-block;
+  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
+  outline: 0;
+  background: #3f3f3f;
+  width: max-content;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  pointer-events:none;
+  opacity:0.3;
+  margin-right:15px;
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.form button.ready{
+  opacity:1;
+  pointer-events:all;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: rgba(13, 251, 25, 1)
+}
+.form button.ar:hover,.form button.ar:active,.form button.ar:focus{
+  background: rgba(251, 25, 13, 1)
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.form .message a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.form .register-form {
+  display: none;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.container .info span .fa {
+  color: #EF3B3A;
+}
+body {
+  background: black; /* fallback for old browsers */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+}
+.aframe{
+  position:relative;
+  width:100%;
+  height:calc(100% - 30px);
+  overflow:hidden;
+/*   pointer-events:none; */
+}
+.aframe:hover{
+  cursor:crosshairs
+}
+.bar{
+  background:#3f3f3f;
+  width:100%;
+  height:30px;
+  font-size:14px;
+  display:flex;
+  align-items:center
+}
+.bar p{
+  margin-left:30px;
+  color: rgba(255,255,255,0.6)
+}
+.bar:hover{
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;}
+.bar:active{
+ cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+}
+.draggable:hover{
+    z-index:9;
+}
+.draggable:focus{
+    z-index:10;
+}
+.draggable:active{
+      z-index:10;
+}
+
+.window{
+      width: 50vw;
+    height: 50vw;
+    max-height:65vh;
+    position: fixed;
+    top: 5vh;
+    right: 45px;
+    background-color: rgba(0,0,0,0.9);
+    color: #666;
+    border: 2px solid #3f3f3f	;
+    border-radius: 5px;
+}
+
+.window.desc{
+  width:50vw;
+  max-width:800px;
+  height:80vh;
+  max-height:80vh;
+  top:auto;
+    bottom: 50px;
+    left: 45px;
+  font-size:24px;
+}
+.window.desc .block{
+  padding:30px;
+  padding-bottom:0;
+  width:  calc(100% - 60px);
+    height:calc(100% - 60px);
+    overflow-y:scroll;
+  display:flex;
+  flex-direction:column;
+  align-items:center
+
+}
+.window.desc .block ul{
+  width:100%;
+  margin:0;
+  padding:0;
+  padding-bottom:60px;  
+}
+.window.desc .block img{
+  width:80%;
+  max-width:450px;
+}
+.window.desc .block h3{
+margin-bottom: 0;
+    margin-top: 0;
+    font-size: 80px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+a{
+  color:#666;
+/*   text-decoration:none */
+}
+a:hover{
+  color:#fff;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 400px;
+}
+
+.cube {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: translateZ(-100px);
+  transition: transform 1s;
+}
+@keyframes turn{
+  0%{
+    transform: translateZ(-100px) rotateY(   0deg); 
+  }
+  100%{
+    transform: translateZ(-100px) rotateY(   -360deg); 
+  }
+}
+.cube.show-front  { 
+  animation: turn 5s infinite linear
+}
+
+.cube__face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #666;
+  line-height: 200px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+}
+
+
+.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
+.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
+.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
+.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
+.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
+.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.controls{
+  position:absolute;
+  z-index:1;
+  pointer-events:none;
+  padding-left: 30px;
+  padding-bottom:30px;
+  width: calc( 100% - 60px);
+  
+
+}
+li{
+  list-style-type:none;
+}
+
+
+@media (max-width: 800px) { 
+
+.form{
+  top:5vw;
+    left:5vw;
+      width:90vw;
+  position:relative;
+  }
+  .window{
+    top:calc( 5vw + 30px);
+      left:5vw;
+    width:90vw;
+      position:relative;
+  pointer-events:none;
+    max-height:none;8
+    height:70vh;
+    
+  }
+  .window.desc{
+     top:calc( 5vw + 60px);
+      left:5vw;
+    width:90vw;
+    pointer-events:all;
+    height:auto;
+    max-height:none;
+    margin-bottom: 40vh;
+    font-size:16px;
+  }
+  .window.desc .block{
+    overflow:auto;
+    height:auto;
+    
+  }
+  .mobileContainer{
+    overflow-y:scroll;
+    -webkit-overflow-scrolling:touch;
+    height: 100vh;
+  }
+
+}

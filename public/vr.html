@@ -1,0 +1,384 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>VR Chat Browser</title>
+    <meta name="description" content="VR Multi-user Browser">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="easyrtc/easyrtc.js"></script>
+    <script src="https://unpkg.com/networked-aframe/dist/networked-aframe.min.js"></script>
+  	<script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script>
+
+<!--     <script src="networked-aframe.js"></script> -->
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!--     <script src="https://rawgit.com/feiss/aframe-environment-component/master/dist/aframe-environment-component.min.js"></script> -->
+    <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
+          	<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+
+    <script src="/js/spawn-in-circle.component.js"></script>
+    <script src="/js/dynamic-room.component.js"></script>
+    <script src="/js/getURL.js"></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+
+      body{
+        font-family: 'IBM Plex Mono', monospace;
+        background-color:black;
+        font-size:16px;
+      }
+      form, input{
+        font-family: 'IBM Plex Mono', monospace;
+        font-size:16px;
+        margin:0;
+      }
+      form{
+        margin: 0 10px 0 10px
+      }
+      input{
+        border-radius:5px;
+        padding:5px;
+        border:solid 2px white;
+        width:calc(100vw - 400px)
+      }
+      input:focus{
+        border-color:transparent;
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+          transition: background-color 5000s ease-in-out 0s;
+          -webkit-text-fill-color: #000 !important;
+      }
+      input[type=text], textarea {
+        outline: none;
+        padding: 3px 0px 3px 3px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid #DDDDDD;
+      }
+
+      input[type=text]:focus, textarea:focus {
+        box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+        padding: 3px 0px 3px 3px;
+/*         margin: 5px 1px 3px 0px; */
+        border: 1px solid rgba(81, 203, 238, 1);
+      }
+      .canvasContainer{
+        width:calc(100% - 24px);
+        height: calc(100% - 24px);
+        position:absolute;
+        top:10px;
+        left:10px;
+        border: solid 2px #666;
+        border-radius:10px;
+        overflow:hidden;
+      }
+      .loader{
+      position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .loader p{
+        display:inline-block;
+        font-size:24px;
+      }
+      .loader span{
+        font-size:16px;
+      }
+      .back{
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: rgba(255,255,255,0.5);
+        text-decoration: none;
+        background-color: #666;
+        z-index: 998;
+        width:100%;
+        padding:5px 0px 8px 0px;
+        display:flex;
+        justify-content:space-between;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      .back b{
+        font-weight:900;
+        opacity:0.5;        
+      }
+      .back span{
+        font-weight:900;
+      }
+      .back .contents{
+        display:flex;
+        align-items:center;
+      }
+      .contents a, .contents span{
+        margin-left: 5px;
+      }
+  
+      .back a{
+        text-decoration:none;
+        color:white;
+      }
+      .back a:hover{
+        color:rgba(81, 203, 238, 1);
+      }
+      
+      .back p{
+        padding:10px;
+        padding-top:5px;
+        padding-bottom:5px;
+        margin:0
+      }
+      .back p.divider{
+        padding-left:0;
+        padding-right:0;
+      }
+      .bar{
+        width:100%;
+        height:10px;
+        background: #666;
+        font-size: 5px;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
+      .bar p{
+        margin:0;
+      }
+      .a-enter-vr-button{
+        border-radius:5px;
+      }
+      .search{
+        position: relative;
+            display: flex;
+    align-items: center;
+    justify-content: center;
+        margin-right:10px;
+        color:white
+      }
+      .search:hover{
+        color:rgba(81, 203, 238, 1);
+        cursor:pointer
+      }
+      .info{
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        background-color:rgba(0,0,0,0.8);
+        z-index:997;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        transform-origin:center;
+        opacity:0;
+        transform:scale3d(0.5 ,.5, 0.5);
+        transition: opacity 0.25s, transform 0.25s;
+        pointer-events:none
+      }
+      .info.selected{
+        opacity: 1;
+        pointer-events:all;
+        transform:scale3d(1, 1, 1)
+      }
+      .controls{
+        list-style:none;
+        color:white;
+        padding:0;
+      }
+      .controls li:first-child{
+        font-weight:900;
+        font-size:24px;
+        margin-bottom:24px;
+      }
+      #easyrtcErrorDialog{
+        display:none;
+      }
+      
+    </style>
+   <template id="avatar-template">
+            <a-entity static-body class="avatar" networked-audio-source> 
+              <a-sphere class="head"
+                color="#5985ff"
+                scale="0.45 0.5 0.4"
+                random-color
+              ></a-sphere>
+              <a-entity class="face"
+                position="0 0.05 0"
+              >
+                <a-sphere class="eye"
+                  color="#efefef"
+                  position="0.16 0.1 -0.35"
+                  scale="0.12 0.12 0.12"
+                >
+                  <a-sphere class="pupil"
+                    color="#000"
+                    position="0 0 -1"
+                    scale="0.2 0.2 0.2"
+                  ></a-sphere>
+                </a-sphere>
+                <a-sphere class="eye"
+                  color="#efefef"
+                  position="-0.16 0.1 -0.35"
+                  scale="0.12 0.12 0.12"
+                >
+                  <a-sphere class="pupil"
+                    color="#000"
+                    position="0 0 -1"
+                    scale="0.2 0.2 0.2"
+                  ></a-sphere>
+                </a-sphere>
+              </a-entity>
+            </a-entity>          
+        </template>
+    <script>
+      // Define custom schema for syncing avatar color, set by random-color, and name tag
+      NAF.schemas.add({
+        template: '#avatar-template',
+        components: [
+          'position',
+          'rotation',
+          {
+            selector: '.head',
+            component: 'material',
+            property: 'color'
+          }
+        ]
+      });  
+          </script>
+    
+  </head>
+  
+  <body class="hidden">
+    
+    <section class="canvasContainer">
+      <nav class="back">
+      <div class="contents">
+        <a id="switcher" href="/">
+        <p>
+          <span>VR</span>·<b>AR</b>
+        </p>
+      </a>
+
+        <form class="login-form noselect" method="GET" action="/vr.html">
+          <input id="url" type="text" name="room" placeholder="enter any url" required/>
+        </form>
+
+        <p class="dimension"><b>SIZE:</b><span>Loading</span></p>
+      </div>
+        <i class="material-icons search">
+        help_outline
+        </i>
+      </nav>
+      <div class="loader">
+      <p>Building World...<br><br><span><b>Controls</b><br>'wasd' to move<br>'mouse' to rotate camera<br>'esc/click' to show/hide cursor<br>'spacebar' to jump<br>enable microphone for multiplayer<br><br>Websites cached are reset every hour.<br>New sites may take more time to load.</span></p>
+    </div>
+      <div class="info">
+        <ul class="controls">
+          <li><b>Controls</b></li>
+          <li>'wasd' to move</li>
+          <li>'mouse' to rotate camera</li>
+          <li>'esc' to show cursor</li>
+          <li>'spacebar' to jump</li>
+          <li> &nbsp;enable microphone for multiplayer</li>
+        </ul>
+      </div>
+      
+        
+    <a-scene 
+      dynamic-room 
+      networked-scene="
+      room: basic;
+      adapter: easyrtc;
+      audio: true;
+      debug: true;
+    " physics="gravity:-3;iteration:20"
+      fog="type: linear; color: #ffffff">
+      <a-assets>
+      </a-assets>
+      <a-entity id="block"></a-entity>
+      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" camera 
+                universal-controls="movementControls: gamepad, keyboard;movementAcceleration: 200"
+                kinematic-body
+                jump-ability
+                position="0 1000 0" >
+        <a-entity class="avatar">
+        <a-sphere class="head"
+          visible="false"
+          random-color
+        ></a-sphere>
+        </a-entity>
+         
+      </a-entity>
+      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
+      <a-entity type="point" light="color: #ffffff; intensity: 0.5;decay:0.7" position="-10 10 0"></a-entity>
+      <a-entity id="world">
+        <a-entity id="walls">
+          <a-box id="ground" static-body geometry="width:125;height:125;depth:15" material="transparent: true; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;" position="0 -8 0" visible="false" rotation="-90 0 0"></a-box>
+
+          
+<!--             <a-box id="platform"
+             color="#ffffff"
+             opacity="0.3"      
+             width="10000" height="0.25" depth="10000"
+             position="0 0 0"
+            visible="false"
+             static-body></a-box>  -->
+        </a-entity>
+      </a-entity>
+      <a-sky id="sky" color="#000000"></a-sky>      
+    </a-scene>
+    </section>  
+      
+      
+    
+    
+<!--     <div class="form draggable">
+        <div class="bar">
+          <p>
+          ~vrBrowser$ launcher
+          </p>
+        </div>
+        <form class="login-form noselect" method="GET">
+          <input id="url" type="text" name="room" name2="URL: " placeholder="type any website" required/>
+          <button class="vr" formaction="/vr.html">VR Experience</button>
+        </form>
+      </div> -->
+    <script>
+      // On mobile remove elements that are resource heavy
+      var isMobile = AFRAME.utils.device.isMobile();
+
+      if (isMobile) {
+      }
+      getURL();
+      
+      $(function() {
+
+      $( "i.search" ).on( "click", function() {
+          if($(this).hasClass('selected') === true){
+            $(this).removeClass('selected')
+            $('.info').removeClass('selected')
+            $(this).html('help_outline')
+          }else{
+            console.log('click')
+            $(this).addClass('selected')
+            $('.info').addClass('selected')
+            $(this).html('highlight_off')
+          }
+      });
+       
+        
+      });
+    </script>
+  </body>
+</html>

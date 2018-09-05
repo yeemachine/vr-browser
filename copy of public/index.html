@@ -1,0 +1,223 @@
+<html>
+  <head>
+    <link href="/styles/login.css" rel="stylesheet" type="text/css">
+     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+      	<script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+
+<!--     <script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v3.2.0/dist/aframe-physics-system.min.js"></script>
+ -->
+    <script
+      src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
+      integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
+      crossorigin="anonymous"></script>  
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css" />
+  </head>
+  <body>
+      <section class="mobileContainer">
+      <div class="form draggable">
+        <div class="bar">
+          <p>
+          ~vrBrowser$ launcher
+          </p>
+        </div>
+        <form class="login-form noselect" method="GET">
+          <input id="url" type="text" name="room" name2="URL: " placeholder="type any website" required/>
+          <button class="vr" formaction="/vr.html">VR Experience</button>
+          <button class="ar" formaction="/ar.html">AR Experience</button>  
+        </form>
+      </div>
+      <div class="window draggable">
+        <div class="bar">
+          <p>
+          ~vrBrowser$ movement_tutorial
+          </p>
+        </div>
+        <ul class="controls">
+          <li>'wasd' to move</li>
+          <li>'mouse' to rotate camera</li>
+          <li>'esc' to show cursor</li>
+          <li>'spacebar' to jump (not in tutorial)</li>
+          <li> &nbsp;enable microphone for multiplayer (not in tutorial)</li>
+
+        
+        </ul>
+              <section class="aframe">
+              <a-scene vr-mode-ui="enabled: false">
+                
+              <a-entity  position="0 5 8" >
+                <a-camera universal-controls="movementControls: gamepad, keyboard" position="-14.977794259804254 17.2 -14.356310644443116" rotation="-45.17507149287806 -6.0713784621071945 0"></a-camera>
+              </a-entity>
+              <a-entity rotation="0 45 0">
+                
+                 <a-entity id="cubeUnit" position="-10 12 -40">
+                  </a-entity>
+              </a-entity>
+
+              <a-entity light="color: #ffffff; intensity: .075; type: ambient;" visible=""></a-entity>
+              <a-entity type="point" light="color: #ffffff; intensity: 0.5;decay:0.7" position="-10 10 0"></a-entity>
+            </a-scene>
+        </section>
+      </div>
+    <div class="window desc draggable">
+        <div class="bar">
+          <p>
+          ~vrBrowser$ about_VR_AR
+          </p>
+        </div>
+        <div class="block">
+          <p>
+            <b>VR-Browser</b> is a response to the action of browsing the internet alone. Instead of looking at webpages in solitude, users can experience a sort of communal browsing when connected in <b>VR-Browser</b>. 
+            This platform represents websites in three dimensions, making the act of browsing content an atypical spatial exercise. 
+          Once the user enters a URL, a screenshot of the website is taken, split into pieces, and used to generate a Minecraft-like world with those textures.
+            <br><br>
+            Heavily inspired by VR Chat and just the general culture of MMORPG chats in general, users visiting the same websites will be able to interact and talk with each other. Each URL act as the server or chat room for any group of friends to explore. Just like most MMOs, the voice chat uses positional audio, giving the illusion of a true virtual space. 
+          </p>
+          <br><br>
+          <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fvricon.svg?1526096932219"/>
+          <h3>
+            +
+          </h3>
+          <br><br>
+          <div class="scene">
+            <div class="cube show-front">
+              <div class="cube__face cube__face--front">A-Frame</div>
+              <div class="cube__face cube__face--back"></div>
+              <div class="cube__face cube__face--right">Environment</div>
+              <div class="cube__face cube__face--left">Networked</div>
+              <div class="cube__face cube__face--top"></div>
+              <div class="cube__face cube__face--bottom"></div>
+            </div>
+          </div>
+          <br><br>
+          <h3>
+            +
+          </h3>
+          <img style="opacity:0.4" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Ftalk.svg?1526138337118"/>
+          <br><br>
+          <p>
+            <b>VR-Browser</b> also has an alternate AR experience. This mode allows users to view the same world but from a top down perspective. In this mode, the you remain anonymous and invisible while you spy on other players on the map. 
+            <br><br>
+            Unfortunately, this application of Web AR is unable to do markerless tracking and still uses the older alternative.
+          To use AR with this project, please print out a <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
+          Hiro Marker</a> and show it to the camera.  
+          I am working towards a markerless version in the future.
+          </p>
+          <br>
+          <ul>
+            <li><b>Special Thanks</b></li>
+            <li><a target="blank" href="https://www.erinsparling.com/">Erin Sparling</a></li>
+            <li>Hayden Lee—<a target="blank" href="https://github.com/networked-aframe/networked-aframe">Networked Aframe</a></li>
+            <li>Jerome Etienne—<a target="blank" href="https://github.com/jeromeetienne/AR.js">AR.js</a></li>
+            <li><a target="blank" href="https://github.com/brenden/node-webshot">Node Webshot</a></li>
+          </ul>
+        </div>    
+      </div>
+        
+    <div class="ghost">
+      <input id="url-ghost" placeholder=""/>
+      <input id="name-ghost" placeholder=""/>
+    </div>
+        </section>
+    
+    
+    <script>
+      // A test string
+// RegExp literal which matches http:// or HTTP:// at the beginning of a string
+// An unwanted beginning
+      var beginsHTTP = /^https?\:\/\//i
+      var beginsWWW = /^(www\.)/
+
+      // Javascript using onchange property on element
+      document.getElementById('url').onchange = function () {
+          // using this which points to the element
+          // this.value = this.value.replace(/^https?\:\/\//i, '').replace(/^(www\.)/,"");
+      };
+      
+      $('.draggable').draggable({
+          handle: '.bar',
+          appendTo: 'body',
+          start: function(event, ui) {
+              isDraggingMedia = true;
+          },
+          stop: function(event, ui) {
+              isDraggingMedia = false;
+          }
+      });
+      
+      // $( ".hiro" ).tooltip({ content: '<img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>' });
+
+      $('input').each(function(i, obj) {
+          $(obj).bind('keyup', function(event) {
+
+         if($.trim($('#url').val()) !== ''){
+        $('button').addClass('ready')
+     }else{
+       $('button').removeClass('ready')
+      }
+          });
+    });
+
+    
+      var width = 20;
+      var height = 20;
+      for (let z = 0; z < width; z ++) {
+        for (let x = 0; x < height; x ++) {
+          var a = x-(width/2);
+          var b = z-(height/2);
+          var c = Math.sqrt( a*a + b*b );
+          var scene = document.querySelector('#cubeUnit');
+          var cube = document.createElement('a-box');
+          let h = (Math.sin(c)+1)/2;
+          // console.log(h)
+          cube.setAttribute('position', {
+                              x: (x*1),
+                              y: 0,
+                              z: (z*1)
+                            });
+          let d = c;
+          // cube.setAttribute('height', 1+h);
+          cube.setAttribute('id', 'x_'+x+'y_'+z);
+          // cube.setAttribute('metalness', '0.6');
+
+          // cube.setAttribute('material','wireframe:true')
+          // cube.setAttribute('color', 'rgb('+Math.floor(h*255)+','+Math.floor(h*255)+','+Math.floor(h*255)+')');
+          scene.appendChild(cube);
+        }
+      }
+
+    var t = 0;
+function render() {
+  t -= 0.01;
+  requestAnimationFrame(render);
+  for (let z = 0; z < width; z ++) {
+        for (let x = 0; x < height; x ++) {
+          var a = x-(width/2);
+          var b = z-(height/2);
+          var c = Math.sqrt( a*a + b*b );
+          var offset = (Math.sin(t*5+c)+1)/2
+          var box = document.querySelector('#x_'+x+'y_'+z)
+          box.setAttribute('height', 1 + offset * 6);
+          // box.setAttribute('coender();
+        }
+  }
+}
+      render()
+
+      
+    function ping(){
+       $.ajax({
+          url: 'https://screenshot-api.glitch.me',
+          success: function(result){
+             console.log('wake up api');
+          },     
+          error: function(result){
+              console.log('timeout/error');
+          }
+       });
+    }
+    ping();
+    </script>
+  </body>
+</html>
