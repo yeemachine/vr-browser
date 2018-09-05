@@ -62,6 +62,7 @@ AFRAME.registerComponent('dynamic-room', {
                 $("#ground").attr("material","src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
                 document.querySelector('#player').setAttribute('position', '0 50 0');
                 document.querySelector('#player').removeAttribute("static-body");
+                console.log(document.querySelector('#player').getAttribute('position'))
                 $(".loader").fadeOut( "slow", function() {
                   $(".loader").hide();
                 });  
