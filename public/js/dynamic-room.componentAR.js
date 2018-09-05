@@ -53,7 +53,7 @@ AFRAME.registerComponent('dynamic-room', {
             console.log( "ready!" );
           $.ajax({
             dataType: "json",
- url: 'https://screenshot-api.herokuapp.com/webshot?url='+params.room+'&imagename='+params.room.replace(/\//g, "_")+'&width='+document.documentElement.clientWidth,
+ url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+document.documentElement.clientWidth,
             success: function(response) {
            console.log(response)
                   
