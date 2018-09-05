@@ -53,7 +53,7 @@ AFRAME.registerComponent('dynamic-room', {
             console.log( "ready!" );
           $.ajax({
             dataType: "json",
- url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+document.documentElement.clientWidth,
+ url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+1440,
             success: function(response) {
            console.log(response)
                   
@@ -105,6 +105,8 @@ AFRAME.registerComponent('dynamic-room', {
                   var numRowsToCut = Math.round(image.height/100);
                   var widthOfOnePiece = image.width/numColsToCut;
                   var heightOfOnePiece = image.height/numRowsToCut
+                  var blockSize = 10
+                  
                   for(var x = 0; x < numColsToCut; ++x) {
                       for(var y = 0; y < numRowsToCut; ++y) {
                           var canvas = document.createElement('canvas');
@@ -142,35 +144,32 @@ AFRAME.registerComponent('dynamic-room', {
                           var intensity = Math.floor((0.2125 * rgb.r) + (0.7154 * rgb.g) + (0.0721 * rgb.b));
                         
                           var cube = document.createElement('a-box');
-                          var primitives = ['box','sphere','cone','cylinder','dodecahedron','octahedron','tetrahedron','torus','torusKnot']
-                          var randPrim = primitives[Math.floor(Math.random() * primitives.length)];
-                          var sphere = document.createElement('a-'+randPrim);
                           var intensityChange = (1-(intensity/255))
+                          var alpha = 100
+                          
                           cube.setAttribute('metalness', '0.6');
                           cube.setAttribute('material', 'color:#fff');
                           cube.setAttribute('roughness', '0.4');
                           cube.setAttribute('sphericalEnvMap', '#sky');
                           cube.setAttribute('static-body','');
-                          cube.setAttribute('height', 1+intensityChange*15);
-                          cube.setAttribute('width', '5');
-                          cube.setAttribute('depth', '5');
+                          cube.setAttribute('height', 1+intensityChange*alpha);
+                          cube.setAttribute('width', blockSize);
+                          cube.setAttribute('depth', blockSize);
                           cube.setAttribute('src', canvas.toDataURL()); 
                           cube.setAttribute('id', 'x_'+x+'y_'+y);
                           cube.setAttribute('position', {
-                              x: ((x-(numColsToCut/2))*5),
-                              y: (.2+ (1-(intensity/255))*15)/2,
-                              z: ((y-(numRowsToCut/2))*5)
+                              x: ((x-(numColsToCut/2))*blockSize),
+                              y: 0,
+                              z: ((y-(numRowsToCut/2))*blockSize)
                             });
-                          sphere.setAttribute('radius', '.75');
-                          sphere.setAttribute('dynamic-body','');
-                          sphere.setAttribute('metalness', '0.3');
-                          // sphere.setAttribute('mirror','');
-                          sphere.setAttribute('src', canvas.toDataURL()); 
-                          sphere.setAttribute('position', {
-                              x: ((x-(numColsToCut/2))*5),
-                              y: (.2+ (1-(intensity/255))*15),
-                              z: ((y-(numRowsToCut/2))*5)
+                          if(intensity < 100){
+                            cube.setAttribute('velocity','0 0 0')
+                            cube.setAttribute('toggle-velocity', {
+                              axis: 'y',
+                              min: 0,
+                              max: (.2+ (1-(intensity/255))*alpha)/2
                             });
+                          }
                           cube.setAttribute('id', 'x_'+x+'y_'+y);
                           entity.appendChild(cube);
                           if(Math.round(Math.random()) === 1){
@@ -210,6 +209,8 @@ AFRAME.registerComponent('dynamic-room', {
       audio: true
     };
     console.info('Init networked-aframe with settings:', networkedComp);
+    
+    document.querySelector('a-scene').setAttribute('networked-scene', networkedComp);
     document.querySelector('#url').setAttribute('placeholder', room);
     document.querySelector('#switcher').setAttribute('href', window.location.href.replace("ar.html", "vr.html"));
   },

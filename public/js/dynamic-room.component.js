@@ -53,7 +53,7 @@ AFRAME.registerComponent('dynamic-room', {
           $.ajax({
             dataType: "json",
             type: 'GET',
-            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+document.documentElement.clientWidth,
+            url: 'https://screenshot-api.herokuapp.com/webshot?url='+room+'&width='+1440,
             success: function(response) {
               console.log(response)
                   
@@ -291,6 +291,8 @@ AFRAME.registerComponent('dynamic-room', {
     console.info('Init networked-aframe with settings:', networkedComp);
     
     var website = 'http://'+room
+    
+    document.querySelector('a-scene').setAttribute('networked-scene', networkedComp);
     document.querySelector('#url').setAttribute('value', room);
     document.querySelector('#switcher').setAttribute('href', window.location.href.replace("vr.html", "ar.html"));
 
