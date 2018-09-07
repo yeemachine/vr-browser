@@ -8,11 +8,11 @@
 }
 
 a{
-  color:#666;
+  color:#999;
 /*   text-decoration:none */
 }
 a:hover{
-  color:#fff;
+  color:#000;
 }
 .scene {
   width: 200px;
@@ -56,11 +56,11 @@ a:hover{
   position: absolute;
   width: 200px;
   height: 200px;
-  border: 1px solid #fff;
+  border: 1px solid #000;
   line-height: 200px;
   font-size: 24px;
   font-weight: bold;
-  color: #fff;
+  color: #000;
   text-align: center;
 }
 
@@ -80,7 +80,7 @@ a:hover{
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    color: #fff;
+    color: #000;
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
@@ -114,6 +114,7 @@ ul li:first-child{
 .loader{
   overflow-y:scroll;
   align-items:flex-start;
+  background-color:#dddddd;
 }
 
       #switcher{

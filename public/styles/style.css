@@ -1,9 +1,17 @@
       @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
-
+      @keyframes pulse{
+  0%, 100%{
+    opacity: 0; 
+  }
+  50%{
+    opacity: 1; 
+  }
+}
       body{
         font-family: 'IBM Plex Mono', monospace;
         background-color:#bbb;
         font-size:14px;
+        margin:0;
       }
       form, input{
         font-family: 'IBM Plex Mono', monospace;
@@ -43,18 +51,15 @@
         border: 1px solid rgba(81, 203, 238, 1);
       }
       .canvasContainer{
-        width:calc(100% - 24px);
-        height: calc(100% - 24px);
+        width:calc(100% - 30px);
+        height: calc(100% - 30px);
         position:absolute;
-        top:10px;
-        left:10px;
+        top:15px;
+        left:15px;
 /*         border: solid 1px #ccc; */
         border-radius:10px;
         overflow:hidden;
-         -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0)
+        z-index: 1
       }
       .loader{
       position: relative;
@@ -62,8 +67,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: black;
-        color: white;
+        background-color: #ddd;
+        color: #000;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -74,6 +79,18 @@
       }
       .loader span{
         font-size:16px;
+      }
+      .loader .anim span:nth-child(1){
+        opacity:0;
+        animation: pulse 2s infinite ease 0s
+      }
+      .loader .anim span:nth-child(2){
+       opacity:0;
+        animation: pulse 2s infinite ease 0.5s
+      }
+      .loader .anim span:nth-child(3){
+        opacity:0;
+        animation: pulse 2s infinite ease 1s
       }
       .back{
         position: relative;
