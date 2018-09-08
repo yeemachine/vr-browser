@@ -51,12 +51,12 @@
         border: 1px solid rgba(81, 203, 238, 1);
       }
       .canvasContainer{
-        width:calc(100% - 30px);
-        height: calc(100% - 30px);
+         width:calc(100% - 20px);
+        height: calc(100% - 20px);
+        top:10px;
+        left:10px;
         position:absolute;
-        top:15px;
-        left:15px;
-/*         border: solid 1px #ccc; */
+/*         border: solid 1px #bbb; */
         border-radius:10px;
         overflow:hidden;
         z-index: 1
