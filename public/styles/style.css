@@ -210,4 +210,34 @@
       #easyrtcErrorDialog{
         display:none !important;
       }
+      .material-icons{
+        display:flex !important;
+        align-items:center;
+        justify-content:center;
+}
       
+@media screen and (max-width: 600px) {
+    .canvasContainer{
+        width:calc(100% - 20px);
+        height: calc(100% - 20px);
+        top:10px;
+        left:10px;
+        border-radius:10px;
+      }
+  .dimension{
+    display:none;
+  }
+  input{
+        width:calc(100vw - 160px)
+      }
+     .loader p{
+        font-size:16px;
+      }
+  .controls li:first-child{
+    font-size:16px;
+    }
+  form, input{
+    font-size:16px;
+  }
+  
+}
