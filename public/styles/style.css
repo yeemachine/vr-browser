@@ -176,37 +176,48 @@
         cursor:pointer
       }
       .info{
-        height:100%;
-        width:100%;
+        height:auto;
+        width:auto;
         position:absolute;
-        top:0;
-        left:0;
-        background-color:rgba(0,0,0,0.8);
+        top:-300px;
+        right:10px;
+        background-color:#eee;
         z-index:997;
         display:flex;
         align-items:center;
         justify-content:center;
         transform-origin:center;
         opacity:0;
-        transform:scale3d(0.5 ,.5, 0.5);
-        transition: opacity 0.25s, transform 0.25s;
-        pointer-events:none
+/*         transform:scale3d(0.5 ,.5, 0.5); */
+        transition: opacity 0.25s, top 0.25s;
+        pointer-events:none;
+        border-radius:10px;
       }
       .info.selected{
         opacity: 1;
         pointer-events:all;
-        transform:scale3d(1, 1, 1)
+        top:52px;
+/*         transform:scale3d(1, 1, 1) */
       }
       .controls{
         list-style:none;
-        color:white;
-        padding:0;
+        color:#000;
+        padding:20px 20px 10px 20px;
+        font-size:16px;
+        margin:0;
       }
       .controls li:first-child{
         font-weight:900;
-        font-size:24px;
-        margin-bottom:24px;
+        font-size:16px;
+        margin-bottom:10px;
       }
+      .controls li{
+        margin-bottom:10px;
+        font-size:16px;
+}
+.controls li span{
+  text-decoration:underline;
+}
       #easyrtcErrorDialog{
         display:none !important;
       }
@@ -214,6 +225,29 @@
         display:flex !important;
         align-items:center;
         justify-content:center;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    color: #000;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+     position: absolute;
+    z-index: 1;
+    width: 120px;
+    bottom: 100%;
+    left: 50%; 
+    margin-left: -60px;
+}
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
       
 @media screen and (max-width: 600px) {
@@ -233,11 +267,14 @@
      .loader p{
         font-size:16px;
       }
-  .controls li:first-child{
-    font-size:16px;
-    }
-  form, input{
-    font-size:16px;
+  .controls{
+    max-width:80%;
+  }
+  .info{
+    width:calc(100% - 20px);
+  }
+  .info.selected{
+        top:54px;
   }
   
 }
