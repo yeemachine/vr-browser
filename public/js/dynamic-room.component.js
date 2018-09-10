@@ -13,7 +13,7 @@ AFRAME.registerComponent('dynamic-room', {
       $.ajax({
         dataType: "json",
         type: 'GET',
-        url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
+        url: 'https://screenshot-api.glitch.me/webshot?url=' + room + '&width=' + 1440,
         success: function(response) {
           // console.log(response)
 
