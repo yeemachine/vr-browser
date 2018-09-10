@@ -2,54 +2,6 @@
  * Setup the Networked-Aframe scene component based on query parameters
  */
 
-// AFRAME.registerComponent('suntime', {
-//   schema: {
-//     from: {type:'vec3', default: {x: 0, y: 1, z: -0.2}},
-//     to: {type: 'vec3', default: {x: 0, y: 1, z: 0.2}},
-//     duration: {type: 'int', default: 5000}
-//   },
-//   update: function(oldData){
-//     this.sunPos = {x: this.data.from.x, y: this.data.from.y, z: this.data.from.z};
-//      this.moveSun();
-//     this.tween = new AFRAME.TWEEN.Tween(this.sunPos).
-//       to(this.data.to, this.data.duration).
-//       start();
-//   },
-//    tick: function (t) {
-//      var p = this.sunPos;
-//      var angle = (Math.sin(t/10000)+1)/2;
-//       console.log(Math.sin(t/10000)+1)
-//      this.el.setAttribute('environment', {lightPosition: {x: p.x, y: p.y*angle, z: p.z}});
-//    console.log(t)
-//  }
-// });
-
-AFRAME.registerComponent('sunMove', {
-  schema: {},
-  tick: function(t) {
-    var p = this.sunPos;
-    var angle = (Math.sin(t / 10000) + 1) / 2;
-    // console.log(Math.sin(t/10000)+1)
-    this.el.setAttribute('environment', {
-      lightPosition: {
-        x: 0,
-        y: 0.01 + 0.2 *angle,
-        z: .3
-      }
-    });
-  }
-})
-
-AFRAME.registerComponent('reality', {
-  schema: {
-    value: {
-      default: 'ar'
-    }
-  },
-  update: function() {
-    this.el.setAttribute('reality', 'ar')
-  }
-})
 
 AFRAME.registerComponent('dynamic-room', {
   init: function() {
@@ -58,12 +10,11 @@ AFRAME.registerComponent('dynamic-room', {
     var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
     var baseURLData = ""
     $(function() {
-      console.log("ready!");
       $.ajax({
         dataType: "json",
         url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
         success: function(response) {
-          console.log(response)
+          // console.log(response)
 
           function unhide() {
             // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
@@ -75,28 +26,10 @@ AFRAME.registerComponent('dynamic-room', {
             });
           }
 
-          // function toDataUrl(url, callback) {
-          // var xhr = new XMLHttpRequest();
-          // xhr.onload = function() {
-          //   var reader = new FileReader();
-          //   reader.onloadend = function() {
-          //       callback(reader.result);
-          //   }
-          //   reader.readAsDataURL(xhr.response);
-          // };
-          // xhr.open('GET', url);
-          // xhr.responseType = 'blob';
-          // xhr.send();
-          // }
-
-          // toDataUrl(response.image, function(myBase64) {
-          // unhide();
-          // console.log(myBase64);  myBase64 is the base64 string
-
           var image = new Image();
           image.onload = cutImageUp;
           image.src = response.image;
-          console.log(image.src);
+          // console.log(image.src);
 
           var entity = document.querySelector('#block')
           var scene = document.querySelector('a-scene');
@@ -204,7 +137,7 @@ AFRAME.registerComponent('dynamic-room', {
       });
     });
 
-    console.log(baseURLData)
+    // console.log(baseURLData)
 
     if (!room) {
       window.alert('Please add a room name in the URL, eg. ?room=myroom');
