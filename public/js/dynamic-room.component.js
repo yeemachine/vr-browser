@@ -7,7 +7,7 @@ AFRAME.registerComponent('dynamic-room', {
   init: function() {
     var el = this.el;
     var params = this.getUrlParams();
-    var room = params.url.replace(/ /g,'').replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
+    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
     var baseURLData = ""
     $(function() {
       $.ajax({
@@ -27,24 +27,6 @@ AFRAME.registerComponent('dynamic-room', {
               $(".loader").hide();
             });
           }
-
-          // function toDataUrl(url, callback) {
-          // var xhr = new XMLHttpRequest();
-          // xhr.onload = function() {
-          //   var reader = new FileReader();
-          //   reader.onloadend = function() {
-          //       callback(reader.result);
-          //   }
-          //   reader.readAsDataURL(xhr.response);
-          // };
-          // xhr.open('GET', url);
-          // xhr.responseType = 'blob';
-          // xhr.send();
-          // }
-
-          // toDataUrl(response.image, function(myBase64) {
-          // unhide();
-          // console.log(myBase64);  myBase64 is the base64 string
 
           var image = new Image();
           image.onload = cutImageUp;
@@ -225,7 +207,6 @@ AFRAME.registerComponent('dynamic-room', {
 
           }
 
-          // });
           unhide();
         },
         fail: function(xhr, textStatus, errorThrown) {
@@ -258,7 +239,7 @@ AFRAME.registerComponent('dynamic-room', {
 
     // Setup networked-scene
     var networkedComp = {
-      room: room.replace(/\//g, ""),
+      room: room.replace(/ /g,'').replace(/\//g, ""),
       adapter: 'easyrtc',
       audio: true
     };
