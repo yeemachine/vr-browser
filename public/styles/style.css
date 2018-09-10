@@ -22,13 +22,15 @@
         margin: 0 10px 0 10px
       }
       input{
-        border-radius:5px;
+        border-radius:5em;
         padding:5px;
         border:solid 2px white;
-        width:calc(100vw - 400px)
+        width:calc(100vw - 400px);
+          background-color:#ddd;
       }
       input:focus{
         border-color:transparent;
+        background-color:#fff;
       }
       input:-webkit-autofill,
       input:-webkit-autofill:hover,
@@ -39,14 +41,14 @@
       }
       input[type=text], textarea {
         outline: none;
-        padding: 5px 0px 5px 5px;
+        padding: 5px 0px 5px 15px;
 /*         margin: 5px 1px 3px 0px; */
         border: 1px solid #DDDDDD;
       }
 
       input[type=text]:focus, textarea:focus {
         box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-        padding: 5px 0px 5px 5px;
+        padding: 5px 0px 5px 15px;
 /*         margin: 5px 1px 3px 0px; */
         border: 1px solid rgba(81, 203, 238, 1);
       }
@@ -107,7 +109,7 @@
       }
       #switcher{
         color:#666;
-        border-radius:5px;
+        border-radius:5em;
         margin-left:10px;
       }
       #switcher:hover{
@@ -168,7 +170,7 @@
     justify-content: center;
         margin-right:10px;
         color:#666;
-        border-radius:5px;
+        border-radius:50%;
         padding:2px;
       }
       .search:hover{

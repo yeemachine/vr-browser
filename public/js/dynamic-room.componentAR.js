@@ -159,7 +159,7 @@ AFRAME.registerComponent('dynamic-room', {
                           cube.setAttribute('id', 'x_'+x+'y_'+y);
                           cube.setAttribute('position', {
                               x: ((x-(numColsToCut/2))*blockSize),
-                              y: 0,
+                              y: (.2+ (1-(intensity/255))*15)/2,
                               z: ((y-(numRowsToCut/2))*blockSize)
                             });
                           if(intensity < 100){
