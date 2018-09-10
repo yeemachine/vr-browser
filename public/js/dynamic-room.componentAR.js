@@ -218,7 +218,7 @@ AFRAME.registerComponent('dynamic-room', {
 
     // Setup networked-scene
     var networkedComp = {
-      room: room.replace(/\//g, "-"),
+      room: room.replace(/\//g, ""),
       adapter: 'easyrtc',
       audio: true
     };

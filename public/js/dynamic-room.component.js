@@ -55,7 +55,7 @@ AFRAME.registerComponent('dynamic-room', {
   init: function() {
     var el = this.el;
     var params = this.getUrlParams();
-    var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
+    var room = params.url.replace(/ /g,'').replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
     var baseURLData = ""
     $(function() {
       $.ajax({
@@ -306,7 +306,7 @@ AFRAME.registerComponent('dynamic-room', {
 
     // Setup networked-scene
     var networkedComp = {
-      room: room.replace(/\//g, "-"),
+      room: room.replace(/\//g, ""),
       adapter: 'easyrtc',
       audio: true
     };
