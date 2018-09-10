@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
 @keyframes turn {
   0% {
     transform: translateZ(-100px) rotateY(0deg);
@@ -24,7 +25,7 @@ a:hover {
 }
 
 .block {
-  max-width: 1000px;
+  max-width: 900px;
   width: 80%;
   height: auto;
   margin-top: 40px;
@@ -64,6 +65,7 @@ a:hover {
   border: 1px solid #000;
   line-height: 200px;
   font-size: 24px;
+  font-family:'IBM Plex Mono';
   font-weight: bold;
   color: #000;
   text-align: center;
@@ -100,7 +102,7 @@ li {
 }
 
 ul li:first-child {
-  margin-bottom: 20px;
+/*   margin-bottom: 20px; */
 }
 
 .block ul {
@@ -115,7 +117,6 @@ ul li:first-child {
   overflow-y: scroll;
   overflow-x: hidden;
   align-items: flex-start;
-  background-color: #dddddd;
   -webkit-overflow-scrolling: touch;
   /* Lets it scroll lazy */
 }
