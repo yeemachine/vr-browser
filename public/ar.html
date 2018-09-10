@@ -84,14 +84,14 @@
           <input id="url" type="text" name="url" placeholder="Type a URL" required/>
         </form>
 
-        <p class="dimension"><b>SIZE:</b><span>Loading</span></p>
+        <p class="dimension">Size: <span>Loading</span></p>
       </div>
         <i class="material-icons search">
-        help_outline
+        more_vert
         </i>
       </nav>
       <div class="loader">
-      <p class="anim">Building World<span>.</span><span>.</span><span>.</span><br><br><span><b>Controls</b><br>'wasd' to move<br>'mouse' to rotate camera<br>'esc/click' to show/hide cursor<br>'spacebar' to jump<br>enable microphone for multiplayer<br><br>Websites cached are reset every hour.<br>New sites may take more time to load.</span></p>
+      <p class="anim">Building World<span>.</span><span>.</span><span>.</span><br><br><span><b>Controls</b><br>Point camera at a Hiro Marker to sync location.<br><br>Large sites may take more time to load.</span></p>
     </div>
       <div class="info">
         <ul class="controls">
@@ -103,6 +103,7 @@
           <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
           <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
           Hiro Marker</a> in AR mode</li>
+          <li><a href="/">Back Home</></li>
         </ul>
         
       </div>
@@ -133,23 +134,7 @@
     <video></video>
     </section>  
     
-    <script>
-      // On mobile remove elements that are resource heavy
-      var isMobile = AFRAME.utils.device.isMobile();
-      if (isMobile) {
-      }
-          $( "i.search" ).on( "click", function() {
-          if($(this).hasClass('selected') === true){
-            $(this).removeClass('selected')
-            $('.info').removeClass('selected')
-            $(this).html('help_outline')
-          }else{
-            console.log('click')
-            $(this).addClass('selected')
-            $('.info').addClass('selected')
-            $(this).html('highlight_off')
-          }
-      });
-    </script>
+    <script src="/js/click.js"></script>
+
   </body>
 </html>

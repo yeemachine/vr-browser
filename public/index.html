@@ -23,15 +23,16 @@
         <p>
           <span>VR</span>·<b>AR</b>
         </p>
+ 
       </a>
-
+ 
         <form class="login-form noselect" method="GET" action="/vr.html">
           <input id="url" type="text" name="url" placeholder="Type a URL" required/>
         </form>
 
       </div>
         <i class="material-icons search">
-        help_outline
+        more_vert
         </i>
       </nav>
       <div class="loader">
@@ -93,28 +94,6 @@
       </div>
     
     </section>  
-      
-
-    <script>
-      // On mobile remove elements that are resource heavy
-
-      
-      $(function() {
-
-      $( "i.search" ).on( "click", function() {
-          if($(this).hasClass('selected') === true){
-            $(this).removeClass('selected')
-            $('.info').removeClass('selected')
-            $(this).html('help_outline')
-          }else{
-            console.log('click')
-            $(this).addClass('selected')
-            $('.info').addClass('selected')
-            $(this).html('highlight_off')
-          }
-      });
-        
-      });
-    </script>
+    <script src="/js/click.js"></script>
   </body>
 </html>

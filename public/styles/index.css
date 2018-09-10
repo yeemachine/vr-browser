@@ -1,43 +1,49 @@
-@keyframes turn{
-  0%{
-    transform: translateZ(-100px) rotateY(0deg); 
+@keyframes turn {
+  0% {
+    transform: translateZ(-100px) rotateY(0deg);
   }
-  100%{
-    transform: translateZ(-100px) rotateY(-360deg); 
+  100% {
+    transform: translateZ(-100px) rotateY(-360deg);
   }
 }
 
-a{
-  color:#999;
-/*   text-decoration:none */
+a {
+  color: #999;
+  /*   text-decoration:none */
 }
-a:hover{
-  color:#000;
+
+a:hover {
+  color: #000;
 }
+
 .scene {
   width: 200px;
   height: 200px;
   perspective: 400px;
-  padding:5%;
+  padding: 5%;
 }
-.block{
-  max-width:1000px;
-  width:80%;
-  height:auto;
+
+.block {
+  max-width: 1000px;
+  width: 80%;
+  height: auto;
   margin-top: 40px;
-  margin-bottom:40px;
+  margin-bottom: 40px;
 }
-.block img{
-  max-height:50vh;
-  width:200px;
-  padding:5%;
+
+.block img {
+  max-height: 50vh;
+  width: 200px;
+  padding: 5%;
 }
-.block section{
+
+.block section {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
+
 .cube {
   width: 200px;
   height: 200px;
@@ -47,8 +53,7 @@ a:hover{
   transition: transform 1s;
 }
 
-
-.cube.show-front  { 
+.cube.show-front {
   animation: turn 5s infinite linear
 }
 
@@ -64,64 +69,81 @@ a:hover{
   text-align: center;
 }
 
-
-.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-
-li{
-  list-style-type:none;
-  font-size:24px;
-  margin-bottom:5px;
-}
-ul li:first-child{
-  margin-bottom:20px;
+.cube__face--front {
+  transform: rotateY( 0deg) translateZ(100px);
 }
 
-.block ul{
-  width:100%;
-  margin:0;
-  margin-top:40px;
-  padding:0;
-  padding-bottom:60px;  
-}
-.loader{
-  overflow-y:scroll;
-  overflow-x:hidden;
-  align-items:flex-start;
-  background-color:#dddddd;
-  -webkit-overflow-scrolling: touch; /* Lets it scroll lazy */
+.cube__face--right {
+  transform: rotateY( 90deg) translateZ(100px);
 }
 
-      #switcher{
-        opacity:0.2;
-        pointer-events:none;
-      }
-      .back b{
-        opacity:1;
-      }
+.cube__face--back {
+  transform: rotateY(180deg) translateZ(100px);
+}
 
-input{
-        width:calc(100vw - 160px)
-      }
+.cube__face--left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
 
-h3{
-  font-size:30px;
-  padding-left:10px;
-  padding-right:10px;
+.cube__face--top {
+  transform: rotateX( 90deg) translateZ(100px);
+}
+
+.cube__face--bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+li {
+  list-style-type: none;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+ul li:first-child {
+  margin-bottom: 20px;
+}
+
+.block ul {
+  width: 100%;
+  margin: 0;
+  margin-top: 40px;
+  padding: 0;
+  padding-bottom: 60px;
+}
+
+.loader {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  background-color: #dddddd;
+  -webkit-overflow-scrolling: touch;
+  /* Lets it scroll lazy */
+}
+
+#switcher {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.back b {
+  opacity: 1;
+}
+
+input {
+  width: calc(100vw - 140px)
+}
+
+h3 {
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 @media screen and (max-width: 600px) {
-  
-.block section{
-  flex-direction:column;
-}
-li{
-  font-size: 16px;
-}
-  
+  .block section {
+    flex-direction: column;
+  }
+  li {
+    font-size: 16px;
+  }
 }
