@@ -82,7 +82,7 @@ input[type=text]:focus, textarea:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #eee;
+  background-color: #efefef;
   color: #000;
   display: flex;
   align-items: center;
@@ -126,6 +126,7 @@ input[type=text]:focus, textarea:focus {
   display: flex;
   font-weight:400;
   justify-content: space-between;
+  border-bottom: 1px solid #e9e9e9;
 }
 
 #switcher {
@@ -321,9 +322,9 @@ input[type=text]:focus, textarea:focus {
     max-width: 80%;
   }
   .info {
-    width: calc(100% - 20px);
+    width: calc(100% - 10px);
   }
   .info.selected {
-    top: 54px;
+    top: 43px;
   }
 }

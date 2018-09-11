@@ -9,12 +9,12 @@
 }
 
 a {
-  color: #999;
+  color: #000;
   /*   text-decoration:none */
 }
 
 a:hover {
-  color: #000;
+  color: #f00;
 }
 
 .scene {
@@ -30,8 +30,11 @@ a:hover {
   height: auto;
   margin-top: 40px;
   margin-bottom: 40px;
+  color:#888
 }
-
+.block b{
+  color:#000
+}
 .block img {
   max-height: 50vh;
   width: 200px;

@@ -13,9 +13,26 @@ AFRAME.registerComponent('dynamic-room', {
       $.ajax({
         dataType: "json",
         type: 'GET',
-        url: 'https://screenshot-api.glitch.me/webshot?url=' + room + '&width=' + 1440,
+        url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
         success: function(response) {
-          // console.log(response)
+          console.log(response.rgb)
+          var popColor = {}
+          var pop = 0
+          
+        $.each( response.rgb, function( key, value ) {
+            $.each( value, function( ky, val ) {
+                if(ky === "_population"){
+                  if(pop < val){
+                    pop = val
+                    popColor = value
+                  }
+                }
+            });    
+        });
+          
+          console.log(popColor._rgb.join())
+
+          document.querySelector('a-scene').setAttribute("fog","type: exponential; color: rgb("+popColor._rgb.join()+")")
 
           function unhide() {
             // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
@@ -24,27 +41,26 @@ AFRAME.registerComponent('dynamic-room', {
             document.querySelector('#player').removeAttribute("static-body");
             console.log(document.querySelector('#player').getAttribute('position'))
             $(".loader").fadeOut("slow", function() {
-              $(".loader").hide();
+            $(".loader").hide();
             });
           }
 
           var image = new Image();
           image.onload = cutImageUp;
           image.src = response.image;
-          // console.log(image.src);
 
           function cutImageUp() {
             var imageWidth = image.width;
             var imageHeight = image.height;
-            // console.log(image.width, image.height)
-            var dimension = image.width + "px x " + image.height + "px"
+            // console.log(imageWidth, imageHeight)
+            var dimension = imageWidth + "px x " + imageHeight + "px"
             document.querySelector('.dimension span').innerHTML = dimension;
 
             var imagePieces = [];
-            var numColsToCut = Math.round(image.width / 100);
-            var numRowsToCut = Math.round(image.height / 100);
-            var widthOfOnePiece = image.width / numColsToCut;
-            var heightOfOnePiece = image.height / numRowsToCut
+            var numColsToCut = Math.round(imageWidth / 100);
+            var numRowsToCut = Math.round(imageHeight / 100);
+            var widthOfOnePiece = imageWidth / numColsToCut;
+            var heightOfOnePiece = imageHeight / numRowsToCut
             var blockSize = 10
 
             var walls = document.querySelector('#walls');
@@ -141,7 +157,9 @@ AFRAME.registerComponent('dynamic-room', {
                 rgb.a = Math.floor(rgb.b / count);
 
                 var intensity = Math.floor((0.2125 * rgb.r) + (0.7154 * rgb.g) + (0.0721 * rgb.b));
-
+                // var avgColor = 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')'
+                // console.log(avgColor);
+                
                 var scene = document.querySelector('a-scene');
 
                 var cube = document.createElement('a-box');
