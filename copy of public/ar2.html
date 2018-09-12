@@ -140,18 +140,10 @@
         		<a-entity camera></a-entity>
 
     </a-scene>
+    <video></video>
     </section>  
     
     <script src="/js/click.js"></script>
-    <script>
-      var checkExist = setInterval(function() {
-       if ($('video').length) {
-          // console.log("Exists!");
-          document.querySelector('.canvasContainer').appendChild(  document.querySelector('video') )
-         document.querySelector('video').play(); 
-          clearInterval(checkExist);
-       }
-      }, 100); // check every 100ms
-    </script>
+
   </body>
 </html>

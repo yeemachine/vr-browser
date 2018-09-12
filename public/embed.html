@@ -7,10 +7,8 @@
         <link rel="icon" 
       type="image/png" 
       href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Ftalk-copy%20copy.png?1536316119917">
-    <link href="/styles/style.css" rel="stylesheet" type="text/css">    
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
+
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
@@ -71,43 +69,7 @@
     
   </head>
   
-  <body class="hidden">
-    <section class="canvasContainer">
-      <nav class="back">
-      <div class="contents">
-        <a id="switcher" href="/">
-        <p>
-          <b>VR</b>·<span>AR</span>
-        </p>
-      </a>
-
-        <form class="login-form noselect" method="GET" action="/ar.html">
-          <input id="url" type="text" name="url" placeholder="Search Google or type a URL" required/>
-        </form>
-
-        <p class="dimension">Size: <span>Loading</span></p>
-      </div>
-        <i class="material-icons search">
-        more_vert
-        </i>
-      </nav>
-      <div class="loader">
-      <p class="anim">Building World<span>.</span><span>.</span><span>.</span><br><br><span><b>Controls</b><br>Point camera at a Hiro Marker to sync location.<br><br>Large sites may take more time to load.</span></p>
-    </div>
-      <div class="info">
-        <ul class="controls">
-          <li><b>Quick Info</b></li>
-          <li><span>wasd</span> to move/tap to move on mobile</li>
-          <li><span>mouse</span> to rotate camera</li>
-          <li><span>spacebar</span> to jump</li>
-          <li> enable <span>microphone</span> for multiplayer</li>
-          <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
-          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
-          Hiro Marker</a> in AR mode</li>
-          <li><a href="/">Back Home</a></li>
-        </ul>
-        
-      </div>
+  <body>
       
     <a-scene id="scene"
       markerhandler
@@ -126,11 +88,6 @@
         </a-entity>
         
       </a-entity>
-      
-      
-<!--       <a-marker-camera id="marker" preset="hiro"></a-marker-camera>
-       -->
-
 
       <a-marker preset="hiro">
       <a-entity id="block" scale="0.025 0.025 0.025" position="0 0 0">
@@ -140,18 +97,5 @@
         		<a-entity camera></a-entity>
 
     </a-scene>
-    </section>  
-    
-    <script src="/js/click.js"></script>
-    <script>
-      var checkExist = setInterval(function() {
-       if ($('video').length) {
-          // console.log("Exists!");
-          document.querySelector('.canvasContainer').appendChild(  document.querySelector('video') )
-         document.querySelector('video').play(); 
-          clearInterval(checkExist);
-       }
-      }, 100); // check every 100ms
-    </script>
   </body>
 </html>

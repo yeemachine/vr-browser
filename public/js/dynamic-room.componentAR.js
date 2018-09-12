@@ -16,6 +16,7 @@ AFRAME.registerComponent('dynamic-room', {
         success: function(response) {
           // console.log(response)
 
+
           function unhide() {
             // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
             $("#ground").attr("material", "src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
@@ -124,7 +125,7 @@ AFRAME.registerComponent('dynamic-room', {
                 }
               }
             }
-            scene.appendChild(entity)
+            // scene.appendChild(entity)
             // console.log(imagePieces)
 
           }

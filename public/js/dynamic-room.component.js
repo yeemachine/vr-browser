@@ -30,7 +30,7 @@ AFRAME.registerComponent('dynamic-room', {
             });    
         });
           
-          console.log(popColor._rgb.join())
+          // console.log(popColor._rgb.join())
 
           document.querySelector('a-scene').setAttribute("fog","type: exponential; color: rgb("+popColor._rgb.join()+")")
 
@@ -206,6 +206,7 @@ AFRAME.registerComponent('dynamic-room', {
                 sphere.setAttribute('radius', '3');
                 sphere.setAttribute('dynamic-body', '');
                 sphere.setAttribute('metalness', '0.3');
+                sphere.setAttribute('opacity', '0.5');
                 // sphere.setAttribute('mirror','');
                 sphere.setAttribute('src', canvas.toDataURL());
                 sphere.setAttribute('position', {
