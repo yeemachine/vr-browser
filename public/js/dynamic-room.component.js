@@ -41,6 +41,7 @@ AFRAME.registerComponent('dynamic-room', {
             document.querySelector('#player').setAttribute('position', '0 100 0');
             document.querySelector('#player').setAttribute('rotation', '-90 0 00');
             document.querySelector('#player').removeAttribute("static-body");
+            document.querySelector('#player').setAttribute('animation', 'property: rotation; dur: 3000;delay:2000;easing: easeInSine; loop: false;from:-90; to: 0');
             console.log(document.querySelector('#player').getAttribute('position'))
             $(".loader").fadeOut("slow", function() {
             $(".loader").hide();
