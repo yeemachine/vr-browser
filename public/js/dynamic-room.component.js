@@ -33,11 +33,13 @@ AFRAME.registerComponent('dynamic-room', {
           // console.log(popColor._rgb.join())
 
           document.querySelector('a-scene').setAttribute("fog","type: exponential; color: rgb("+popColor._rgb.join()+")")
+          $('body').css('background-color','rgb('+popColor._rgb.join()+")")
 
           function unhide() {
             // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
             $("#ground").attr("material", "src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
-            document.querySelector('#player').setAttribute('position', '0 50 0');
+            document.querySelector('#player').setAttribute('position', '0 100 0');
+            document.querySelector('#player').setAttribute('rotation', '-90 0 00');
             document.querySelector('#player').removeAttribute("static-body");
             console.log(document.querySelector('#player').getAttribute('position'))
             $(".loader").fadeOut("slow", function() {
