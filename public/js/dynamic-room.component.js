@@ -15,11 +15,11 @@ AFRAME.registerComponent('dynamic-room', {
         type: 'GET',
         url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
         success: function(response) {
-          console.log(response.rgb)
+          console.log(response.color)
           var popColor = {}
           var pop = 0
           
-        $.each( response.rgb, function( key, value ) {
+        $.each( response.color, function( key, value ) {
             $.each( value, function( ky, val ) {
                 if(ky === "_population"){
                   if(pop < val){
@@ -33,18 +33,39 @@ AFRAME.registerComponent('dynamic-room', {
           // console.log(popColor._rgb.join())
 
           document.querySelector('a-scene').setAttribute("fog","type: exponential; color: rgb("+popColor._rgb.join()+")")
-          $('body').css('background-color','rgb('+popColor._rgb.join()+")")
+          
+           function addcss(css){
+              var head = document.getElementsByTagName('head')[0];
+              var s = document.createElement('style');
+              s.setAttribute('type', 'text/css');
+              if (s.styleSheet) {   // IE
+                  s.styleSheet.cssText = css;
+              } else {                // the world
+                  s.appendChild(document.createTextNode(css));
+              }
+              head.appendChild(s);
+           }
+          
+          var class_01 = 'input:hover,.search.selected,.search.selected:hover'
+          var class_05 = 'input,.search:hover,#switcher:hover'
+          var class_025b = 'input[type=text], textarea'
+          var css='body{background-color:rgb('+popColor._rgb.join()+')}'
+          
+          // +class_05+'{background-color:rgba('+popColor._rgb.join()+',0.5)}'+class_01+'{background-color:rgba('+popColor._rgb.join()+',0.75)}'+class_025b+'{border-color:rgba('+popColor._rgb.join()+',0.0)}'
+
+          
 
           function unhide() {
             // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
-            $("#ground").attr("material", "src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
+            // $("#ground").attr("material", "src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
             document.querySelector('#player').setAttribute('position', '0 100 0');
             document.querySelector('#player').setAttribute('rotation', '-90 0 00');
             document.querySelector('#player').removeAttribute("static-body");
             document.querySelector('#player').setAttribute('animation', 'property: rotation; dur: 3000;delay:2000;easing: easeInSine; loop: false;from:-90; to: 0');
             console.log(document.querySelector('#player').getAttribute('position'))
-            $(".loader").fadeOut("slow", function() {
+            $(".loader").fadeOut("f", function() {
             $(".loader").hide();
+            addcss(css)
             });
           }
 
