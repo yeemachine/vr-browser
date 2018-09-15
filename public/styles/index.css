@@ -118,6 +118,9 @@ ul li:first-child {
 
   /* Lets it scroll lazy */
 }
+.loader p:last-child{
+  margin-bottom:80px;
+}
 
 #switcher {
   opacity: 0.2;
