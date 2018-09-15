@@ -3,6 +3,9 @@
     <meta charset="utf-8">
     <title>VR-Browser</title>
     <meta name="description" content="VR-Browser">
+        <link rel="icon" 
+      type="image/png" 
+      href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Ftalk-copy.png?1536315659910">
     <link href="/styles/style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -14,6 +17,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://unpkg.com/aframe-randomizer-components@^3.0.1/dist/aframe-randomizer-components.min.js"></script>
     <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-animation-component@^4.1.2/dist/aframe-animation-component.min.js"></script>
     <script src="/js/dynamic-room.component.js"></script>
 
    <template id="avatar-template">
@@ -81,34 +85,49 @@
       </a>
 
         <form class="login-form noselect" method="GET" action="/vr.html">
-          <input id="url" type="text" name="url" placeholder="enter any url" required/>
+          <input id="url" type="text" name="url" placeholder="Search Google or type a URL" required/>
         </form>
 
-        <p class="dimension"><b>SIZE:</b><span>Loading</span></p>
+        <p class="dimension">Size: <span>Loading</span></p>
       </div>
         <i class="material-icons search">
-        help_outline
+        more_vert
         </i>
       </nav>
       <div class="loader">
-      <p>Building World...<br><br><span><b>Controls</b><br>'wasd' to move<br>'mouse' to rotate camera<br>'esc/click' to show/hide cursor<br>'spacebar' to jump<br>enable microphone for multiplayer<br><br>Websites cached are reset every hour.<br>New sites may take more time to load.</span></p>
+      <p class="anim">Building World<span>.</span><span>.</span><span>.</span></p>
+      <ul class="controls">
+          <li><b>Quick Tips</b></li>
+          <li><span>wasd</span> to move/tap to move on mobile</li>
+          <li><span>mouse</span> to rotate camera</li>
+          <li><span>spacebar</span> to jump</li>
+          <li> enable <span>microphone</span> for multiplayer</li>
+          <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
+          Hiro Marker</a> in AR mode</li>
+          <li><a href="/">About the Project</a></li>
+        </ul>
     </div>
       <div class="info">
         <ul class="controls">
-          <li><b>Controls</b></li>
-          <li>'wasd' to move</li>
-          <li>'mouse' to rotate camera</li>
-          <li>'esc' to show cursor</li>
-          <li>'spacebar' to jump</li>
-          <li> &nbsp;enable microphone for multiplayer</li>
+          <li><b>Quick Tips</b></li>
+          <li><span>wasd</span> to move/tap to move on mobile</li>
+          <li><span>mouse</span> to rotate camera</li>
+          <li><span>spacebar</span> to jump</li>
+          <li> enable <span>microphone</span> for multiplayer</li>
+          <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
+          Hiro Marker</a> in AR mode</li>
+          <li><a href="/">About the Project</a></li>
         </ul>
+        
       </div>
       
         
     <a-scene 
       dynamic-room 
 physics="gravity:-3;iteration:20"
-      fog="type: linear; color: #ffffff">
+      fog="type: linear; color: #dddddd">
       <a-assets>
       </a-assets>
       <a-entity id="block"></a-entity>
@@ -125,7 +144,7 @@ physics="gravity:-3;iteration:20"
         </a-entity>
          
       </a-entity>
-      <a-entity light="color: #ccccff; intensity: 1; type: ambient;" visible=""></a-entity>
+      <a-entity light="color: #ccccff; intensity: 2; type: ambient;" visible=""></a-entity>
       <a-entity type="point" light="color: #ffffff; intensity: 0.5;decay:0.7" position="-10 10 0"></a-entity>
       <a-entity id="world">
         <a-entity id="walls">
@@ -137,30 +156,7 @@ physics="gravity:-3;iteration:20"
     </a-scene>
     </section>  
 
-    <script>
-      // On mobile remove elements that are resource heavy
-      var isMobile = AFRAME.utils.device.isMobile();
+    <script src="/js/click.js"></script>
 
-      if (isMobile) {
-      }
-      
-      $(function() {
-
-      $( "i.search" ).on( "click", function() {
-          if($(this).hasClass('selected') === true){
-            $(this).removeClass('selected')
-            $('.info').removeClass('selected')
-            $(this).html('help_outline')
-          }else{
-            console.log('click')
-            $(this).addClass('selected')
-            $('.info').addClass('selected')
-            $(this).html('highlight_off')
-          }
-      });
-       
-        
-      });
-    </script>
   </body>
 </html>

@@ -1,43 +1,46 @@
-@keyframes turn{
-  0%{
-    transform: translateZ(-100px) rotateY(0deg); 
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Mono');
+@keyframes turn {
+  0% {
+    transform: translateZ(-100px) rotateY(0deg);
   }
-  100%{
-    transform: translateZ(-100px) rotateY(-360deg); 
+  100% {
+    transform: translateZ(-100px) rotateY(-360deg);
   }
 }
 
-a{
-  color:#666;
-/*   text-decoration:none */
-}
-a:hover{
-  color:#fff;
-}
+
+
 .scene {
   width: 200px;
   height: 200px;
   perspective: 400px;
-  padding:5%;
+  padding: 5%;
 }
-.block{
-  max-width:1000px;
-  width:80%;
-  height:auto;
+
+.block {
+  max-width: 900px;
+  width: 80%;
+  height: auto;
   margin-top: 40px;
-  margin-bottom:40px;
+  margin-bottom: 60px;
+  color:#000
 }
-.block img{
-  max-height:50vh;
-  width:200px;
-  padding:5%;
+.block b{
+  color:#000
 }
-.block section{
+.block img {
+  max-height: 50vh;
+  width: 200px;
+  padding: 5%;
+}
+
+.block section {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
 }
+
 .cube {
   width: 200px;
   height: 200px;
@@ -47,8 +50,7 @@ a:hover{
   transition: transform 1s;
 }
 
-
-.cube.show-front  { 
+.cube.show-front {
   animation: turn 5s infinite linear
 }
 
@@ -56,80 +58,91 @@ a:hover{
   position: absolute;
   width: 200px;
   height: 200px;
-  border: 1px solid #fff;
+  border: 1px solid #000;
   line-height: 200px;
   font-size: 24px;
+  font-family:'IBM Plex Mono';
   font-weight: bold;
-  color: #fff;
+  color: #000;
   text-align: center;
 }
 
-
-.cube__face--front  { transform: rotateY(  0deg) translateZ(100px); }
-.cube__face--right  { transform: rotateY( 90deg) translateZ(100px); }
-.cube__face--back   { transform: rotateY(180deg) translateZ(100px); }
-.cube__face--left   { transform: rotateY(-90deg) translateZ(100px); }
-.cube__face--top    { transform: rotateX( 90deg) translateZ(100px); }
-.cube__face--bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-.tooltip {
-    position: relative;
-    display: inline-block;
+.cube__face--front {
+  transform: rotateY( 0deg) translateZ(100px);
 }
 
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-     position: absolute;
-    z-index: 1;
-    width: 120px;
-    bottom: 100%;
-    left: 50%; 
-    margin-left: -60px;
-}
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-}
-li{
-  list-style-type:none;
-  font-size:24px;
-  margin-bottom:5px;
-}
-ul li:first-child{
-  margin-bottom:20px;
+.cube__face--right {
+  transform: rotateY( 90deg) translateZ(100px);
 }
 
-.block ul{
-  width:100%;
-  margin:0;
-  margin-top:40px;
-  padding:0;
-  padding-bottom:60px;  
-}
-.loader{
-  overflow-y:scroll;
-  align-items:flex-start;
+.cube__face--back {
+  transform: rotateY(180deg) translateZ(100px);
 }
 
-      #switcher{
-        opacity:0.2;
-        pointer-events:none;
-      }
-      .back b{
-        opacity:1;
-      }
+.cube__face--left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
 
-input{
-        width:calc(100vw - 160px)
-      }
+.cube__face--top {
+  transform: rotateX( 90deg) translateZ(100px);
+}
 
-h3{
-  font-size:30px;
-  padding-left:10px;
-  padding-right:10px;
+.cube__face--bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+li {
+  list-style-type: none;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+ul li:first-child {
+/*   margin-bottom: 20px; */
+}
+
+.block ul {
+  width: 100%;
+  margin: 0;
+  margin-top: 40px;
+  padding: 0;
+  padding-bottom: 30px;
+}
+
+.loader {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  align-items: flex-start;
+  -webkit-overflow-scrolling: touch;
+  flex-direction:row;
+
+  /* Lets it scroll lazy */
+}
+
+#switcher {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.back b {
+  opacity: 1;
+}
+
+input {
+  width: calc(100vw - 140px)
+}
+
+h3 {
+  font-size: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .block section {
+    flex-direction: column;
+  }
+  li {
+    font-size: 16px;
+  }
 }

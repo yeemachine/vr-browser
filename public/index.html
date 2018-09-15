@@ -3,6 +3,10 @@
     <meta charset="utf-8">
     <title>VR-Browser</title>
     <meta name="description" content="VR-Browser">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" 
+      type="image/png" 
+      href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Ftalk-copy.png?1536315659910">
     <link href="/styles/style.css" rel="stylesheet" type="text/css">
     <link href="/styles/index.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -19,25 +23,22 @@
         <p>
           <span>VR</span>·<b>AR</b>
         </p>
+ 
       </a>
-
+ 
         <form class="login-form noselect" method="GET" action="/vr.html">
-          <input id="url" type="text" name="url" placeholder="enter any url" required/>
+          <input id="url" type="text" name="url" placeholder="Search Google or type a URL" required/>
         </form>
 
       </div>
         <i class="material-icons search">
-        help_outline
+        more_vert
         </i>
       </nav>
       <div class="loader">
               <div class="block">
-   
-            <p>
-             <b>VR/AR-Browser</b> is an interactive multi-user web experience that transforms websites into navigable 3D environments. Users that load up the same webpage are able to see and voice chat one another. This experiment is heavily inspired by World Wide Maze and the ever popular VR Chat.
-            </p>
-          <section>
-                 <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Fvricon.svg?1536027854569"/>
+   <section>
+                 <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Fvricon.svg?1536314488083"/>
           <h3>
             +
           </h3>
@@ -56,58 +57,46 @@
           <h3>
             +
           </h3>
-          <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Ftalk.svg?1526138337118"/>
+          <img src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2F8e89a415-8efd-4e1f-b54d-2e11c0220be9%252Ftalk.svg?1536314487926"/>
           </section>  
             <p>
-           In addition to its VR components, AR mode gives the user a top-down admin-like view of all the players on a particular website. Unfortunately, the platform doesn't support markerless AR at the moment. To use AR with this project, please print out a <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+             <b>VR/AR-Browser</b>  is a web browser that transforms websites or search terms into VR-ready 3D environments. Users who land on the same website will be able to interact and talk with one another. This experiment is inspired by <a href="https://experiments.withgoogle.com/world-wide-maze" target="_blank">World Wide Maze</a> and the ever popular <a href="https://vrchat.net/" target="_blank">VR Chat</a>.
+            </p>
+          
+            <p>
+           In addition to its VR components, AR mode gives a real-time view of all users on a particular website or search term. Unfortunately, the platform doesn't support markerless AR at the moment. To use AR with this project, please print out or save a <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
           <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
           Hiro Marker</a> and point your camera at it.  
           </p>         
           <ul>
-            <li><b>** Special Thanks **</b></li>
+            <li><b>Special Thanks</b></li>
             <li><a target="blank" href="https://www.erinsparling.com/">Erin Sparling</a></li>
             <li>Hayden Lee—<a target="blank" href="https://github.com/networked-aframe/networked-aframe">Networked Aframe</a></li>
             <li>Jerome Etienne—<a target="blank" href="https://github.com/jeromeetienne/AR.js">AR.js</a></li>
             <li><a target="blank" href="https://github.com/brenden/node-webshot">Node Webshot</a></li>
           </ul>
+          <p>
+            You can find the source code for this project <a href="https://github.com/yeemachine/vr-browser" target="_blank">here</a> as well as the custom screenshotting API <a href="https://github.com/yeemachine/screenshot-api" target="_blank">here</a>.   
+          </p>
         </div> 
     </div>
       
       
       <div class="info">
         <ul class="controls">
-          <li><b>Controls</b></li>
-          <li>'wasd' to move</li>
-          <li>'mouse' to rotate camera</li>
-          <li>'esc' to show cursor</li>
-          <li>'spacebar' to jump</li>
-          <li> &nbsp;enable microphone for multiplayer</li>
+          <li><b>Quick Tips</b></li>
+          <li><span>wasd</span> to move/tap to move on mobile</li>
+          <li><span>mouse</span> to rotate camera</li>
+          <li><span>spacebar</span> to jump</li>
+          <li> enable <span>microphone</span> for multiplayer</li>
+          <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
+          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
+          Hiro Marker</a> in AR mode</li>
         </ul>
+        
       </div>
     
     </section>  
-      
-
-    <script>
-      // On mobile remove elements that are resource heavy
-
-      
-      $(function() {
-
-      $( "i.search" ).on( "click", function() {
-          if($(this).hasClass('selected') === true){
-            $(this).removeClass('selected')
-            $('.info').removeClass('selected')
-            $(this).html('help_outline')
-          }else{
-            console.log('click')
-            $(this).addClass('selected')
-            $('.info').addClass('selected')
-            $(this).html('highlight_off')
-          }
-      });
-        
-      });
-    </script>
+    <script src="/js/click.js"></script>
   </body>
 </html>

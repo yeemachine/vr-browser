@@ -91,23 +91,12 @@
         more_vert
         </i>
       </nav>
-      <div class="loader">
-      <p class="anim">Building World<span>.</span><span>.</span><span>.</span></p>
-        <ul class="controls">
-          <li><b>Quick Tips</b></li>
-          <li><span>wasd</span> to move/tap to move on mobile</li>
-          <li><span>mouse</span> to rotate camera</li>
-          <li><span>spacebar</span> to jump</li>
-          <li> enable <span>microphone</span> for multiplayer</li>
-          <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
-          <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
-          Hiro Marker</a> in AR mode</li>
-          <li><a href="/">About the Project</a></li>
-        </ul>
-    </div>
+<!--       <div class="loader">
+      <p class="anim">Building World<span>.</span><span>.</span><span>.</span><br><br><span><b>Controls</b><br>Point camera at a Hiro Marker to sync location.<br><br>Large sites may take more time to load.</span></p>
+    </div> -->
       <div class="info">
         <ul class="controls">
-          <li><b>Quick Tips</b></li>
+          <li><b>Quick Info</b></li>
           <li><span>wasd</span> to move/tap to move on mobile</li>
           <li><span>mouse</span> to rotate camera</li>
           <li><span>spacebar</span> to jump</li>
@@ -115,54 +104,16 @@
           <li>point camera at <a class="hiro tooltip" target="blank" title="" href="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251">
           <img class="tooltiptext" src="https://cdn.glitch.com/8e89a415-8efd-4e1f-b54d-2e11c0220be9%2Fhiro.png?1525975912251"/>
           Hiro Marker</a> in AR mode</li>
-          <li><a href="/">About the Project</a></li>
+          <li><a href="/">Back Home</a></li>
         </ul>
         
       </div>
       
-    <a-scene id="scene"
-      markerhandler
-      dynamic-room       
-      embedded 
-      arjs="sourceType: webcam;detectionMode: mono_and_matrix; matrixCodeType: 3x3;debugUIEnabled: false;">
-      <a-assets>
-      </a-assets>
-      
-      <a-entity id="player" networked="template:#avatar-template;attachTemplateToLocal:false;" visible="false">
-          <a-entity class="avatar">
-        <a-sphere class="head"
-          visible="false"
-          random-color
-        ></a-sphere>
-        </a-entity>
-        
-      </a-entity>
-      
-      
-<!--       <a-marker-camera id="marker" preset="hiro"></a-marker-camera>
-       -->
+    <i-frame src="embed.html"></i-frame>
 
-
-      <a-marker preset="hiro">
-      <a-entity id="block" scale="0.025 0.025 0.025" position="0 0 0">
-      </a-entity>
-		</a-marker>
-      
-        		<a-entity camera></a-entity>
-
-    </a-scene>
     </section>  
     
     <script src="/js/click.js"></script>
-    <script>
-      var checkExist = setInterval(function() {
-       if ($('video').length) {
-          // console.log("Exists!");
-          document.querySelector('.canvasContainer').appendChild(  document.querySelector('video') )
-         document.querySelector('video').play(); 
-          clearInterval(checkExist);
-       }
-      }, 100); // check every 100ms
-    </script>
+
   </body>
 </html>
