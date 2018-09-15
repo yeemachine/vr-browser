@@ -14,7 +14,8 @@ a {
 }
 
 a:hover {
-  color: #f00;
+  color:#fff;
+  background-color: #EF2D5E;
 }
 body {
   font-family: 'Roboto', sans-serif;
@@ -282,7 +283,7 @@ input[type=text]:focus, textarea:focus {
 }
 
 .controls li span {
-  background-color:yellow;
+  background-color:#FFC65D;
 }
 
 #easyrtcErrorDialog {

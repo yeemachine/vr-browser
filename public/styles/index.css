@@ -15,6 +15,7 @@
   height: 200px;
   perspective: 400px;
   padding: 5%;
+  transform: scale(.9);
 }
 
 .block {
@@ -64,31 +65,52 @@
   font-family:'IBM Plex Mono';
   font-weight: bold;
   color: #000;
+  background-color:#fff;
   text-align: center;
 }
 
 .cube__face--front {
   transform: rotateY( 0deg) translateZ(100px);
+  transition: transform 1s;
+  transform-origin: bottom center 0;
+}
+.cube:hover .cube__face--front{
+ transform: rotateY( 0deg) rotateX( -45deg) translateZ(70px) translateY(-70px);
 }
 
 .cube__face--right {
   transform: rotateY( 90deg) translateZ(100px);
+  transition: transform 1s;
+  transform-origin: bottom center 0;
 }
-
+.cube:hover .cube__face--right{
+  transform: rotateY( 90deg) rotateX( -45deg) translateZ(70px) translateY(-70px);
+}
 .cube__face--back {
   transform: rotateY(180deg) translateZ(100px);
+    transition: transform 1s;
+  transform-origin: bottom center 0;
 }
-
+.cube:hover .cube__face--back{
+  transform: rotateY(180.1deg) rotateX(-45deg) translateZ(70px) translateY(-70px);
+}
 .cube__face--left {
   transform: rotateY(-90deg) translateZ(100px);
+    transition: transform 1s;
+  transform-origin: bottom center 0;
 }
-
+.cube:hover .cube__face--left{
+  transform: rotateY( -90deg) rotateX( -45deg) translateZ(70px) translateY(-70px);
+}
 .cube__face--top {
   transform: rotateX( 90deg) translateZ(100px);
+  background-color:#EF2D5E;
+  border:0;
 }
 
 .cube__face--bottom {
   transform: rotateX(-90deg) translateZ(100px);
+    background-color:#FFC65D;
 }
 
 li {
