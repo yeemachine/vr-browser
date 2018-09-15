@@ -16,7 +16,13 @@
   perspective: 400px;
   padding: 5%;
   transform: scale(.9);
+  transition: transform 1s
 }
+.scene:hover{
+  transform:scale(1.2);
+  z-index:2;
+}
+
 
 .block {
   max-width: 900px;
@@ -33,6 +39,12 @@
   max-height: 50vh;
   width: 200px;
   padding: 5%;
+  transform:scale(.9);
+  transition: transform 1s
+}
+.block img:hover{
+  transform:scale(1.5);
+    z-index:2;
 }
 
 .block section {
@@ -40,6 +52,8 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+      margin-bottom: 20vh;
+    margin-top: 20vh;
 }
 
 .cube {
@@ -103,7 +117,9 @@
   transform: rotateY( -90deg) rotateX( -45deg) translateZ(70px) translateY(-70px);
 }
 .cube__face--top {
-  transform: rotateX( 90deg) translateZ(100px);
+    width:199px;
+  transform-origin:center;
+  transform: rotateX( 0deg) translateX(1px) translateZ(0px);
   background-color:#EF2D5E;
   border:0;
 }

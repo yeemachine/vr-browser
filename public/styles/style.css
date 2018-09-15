@@ -25,6 +25,12 @@ body {
   margin: 0;
   transition:background-color .25s;
 }
+::selection {
+  background: #FFC65D; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #FFC65D; /* Gecko Browsers */
+}
 
 form, input {
   font-family: 'Roboto', sans-serif;
