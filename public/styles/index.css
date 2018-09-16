@@ -133,6 +133,7 @@
   transform-origin:center;
   transform: rotateX( 0deg) translateX(1px) translateZ(0px);
   background-color:#EF2D5E;
+  color:white;
   border:0;
 }
 
