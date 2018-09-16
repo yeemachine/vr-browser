@@ -74,7 +74,7 @@ input[type=text], textarea {
 }
 
 input[type=text]:focus, textarea:focus {
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  box-shadow: 0 0 3px rgba(81, 203, 238, 1);
   padding: 5px 0px 5px 15px;
   /*         margin: 5px 1px 3px 0px; */
   border: 1px solid rgba(81, 203, 238, 1);
@@ -90,7 +90,10 @@ input[type=text]:focus, textarea:focus {
 /*   background-color:white; */
   border-radius: 10px;
   overflow: hidden;
-  z-index: 1
+  z-index: 1;
+    -webkit-box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.53);
+-moz-box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.53);
+box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.53);
 }
 
 .loader {
@@ -257,6 +260,9 @@ input[type=text]:focus, textarea:focus {
   border-radius: 10px;
     overflow:hidden;
   border:1px solid #eee ;
+  -webkit-box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.13);
+-moz-box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.13);
+box-shadow: 0px 0px 17px -2px rgba(0,0,0,0.13);
 }
 .info ul{
   position:relative;
@@ -276,7 +282,9 @@ input[type=text]:focus, textarea:focus {
   padding: 20px 20px 10px 20px;
   font-size: 16px;
   margin: 0;
+  
 }
+
 
 .controls li:first-child {
   font-weight: 400;
@@ -335,7 +343,10 @@ input[type=text]:focus, textarea:focus {
 }
 
 @media screen and (max-width: 600px) {
-
+  .loader a, .controls a{
+    color:#fff;
+    background-color: #EF2D5E;
+  }
   .dimension {
     display: none;
   }
