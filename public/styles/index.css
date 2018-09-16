@@ -33,7 +33,8 @@
   color:#000
 }
 .block b{
-  color:#000
+  background-color:#FFC65D;
+  font-weight:normal;
 }
 .block img {
   max-height: 50vh;
@@ -52,8 +53,8 @@
   width: 100%;
   align-items: center;
   justify-content: center;
-      margin-bottom: 20vh;
-    margin-top: 20vh;
+      margin-bottom: 15vh;
+    margin-top: 15vh;
 }
 
 .cube {

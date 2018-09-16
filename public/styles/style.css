@@ -10,6 +10,7 @@
 }
 a {
   color: #000;
+  font-weight:normal;
   /*   text-decoration:none */
 }
 
@@ -290,6 +291,7 @@ input[type=text]:focus, textarea:focus {
 
 .controls li span {
   background-color:#FFC65D;
+  font-weight:normal;
 }
 
 #easyrtcErrorDialog {

@@ -15,7 +15,8 @@ AFRAME.registerComponent('dynamic-room', {
         type: 'GET',
         url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
         success: function(response) {
-          console.log(response.color)
+          console.log(response)
+          
           var popColor = {}
           var pop = 0
           
