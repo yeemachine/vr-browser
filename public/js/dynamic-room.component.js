@@ -9,30 +9,28 @@ AFRAME.registerComponent('dynamic-room', {
     var params = this.getUrlParams();
     var room = params.url.replace(/^https?\:\/\//i, '').replace(/^(www\.)/, "").toLowerCase()
     var baseURLData = ""
-    $(function() {
-      $.ajax({
-        dataType: "json",
-        type: 'GET',
-        url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
-        success: function(response) {
-          console.log(response)
+    
+    var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440);
+        xhr.onload = function() {
+        if (xhr.readyState == 4 && xhr.status === 200) {
+          var response = JSON.parse(this.responseText)
           
+          //Get Dominant Color, Loop through object
           var popColor = {}
           var pop = 0
+          var colorArray = response.color
+  
+          Object.keys(colorArray).forEach(function(key) {
+            Object.keys(colorArray[key]).forEach(function(ky) {
+              if(pop < colorArray[key][ky]){
+                pop = colorArray[key][ky]
+                popColor = colorArray[key]
+              }
+            });
+          });
           
-        $.each( response.color, function( key, value ) {
-            $.each( value, function( ky, val ) {
-                if(ky === "_population"){
-                  if(pop < val){
-                    pop = val
-                    popColor = value
-                  }
-                }
-            });    
-        });
-          
-          // console.log(popColor._rgb.join())
-
+    
           document.querySelector('a-scene').setAttribute("fog","type: exponential; color: rgb("+popColor._rgb.join()+")")
           
            function addcss(css){
@@ -52,22 +50,15 @@ AFRAME.registerComponent('dynamic-room', {
           var class_025b = 'input[type=text], textarea'
           var css='body{background-color:rgb('+popColor._rgb.join()+')}'
           
-          // +class_05+'{background-color:rgba('+popColor._rgb.join()+',0.5)}'+class_01+'{background-color:rgba('+popColor._rgb.join()+',0.75)}'+class_025b+'{border-color:rgba('+popColor._rgb.join()+',0.0)}'
-
           
 
           function unhide() {
-            // $('a-assets').append('<img id="website" crossorigin="anonymous" src="'+response.image+'">')
-            // $("#ground").attr("material", "src:#website; transparent: false; metalness:0.6; roughness: 0.4; sphericalEnvMap: #sky;");
             document.querySelector('#player').setAttribute('position', '0 100 0');
             document.querySelector('#player').setAttribute('rotation', '-90 0 00');
             document.querySelector('#player').removeAttribute("static-body");
             document.querySelector('#player').setAttribute('animation', 'property: rotation; dur: 3000;delay:2000;easing: easeInSine; loop: false;from:-90; to: 0');
-            console.log(document.querySelector('#player').getAttribute('position'))
-            $(".loader").fadeOut("f", function() {
-            $(".loader").hide();
+            document.querySelector('.loader').setAttribute("style", "display:none;");
             addcss(css)
-            });
           }
 
           var image = new Image();
@@ -252,12 +243,27 @@ AFRAME.registerComponent('dynamic-room', {
           }
 
           unhide();
-        },
-        fail: function(xhr, textStatus, errorThrown) {
-          alert('request failed');
-        }
-      });
-    });
+            }
+            else {
+                alert('Something went wrong.  Returned status of ' + xhr.status);
+            }
+        };
+        xhr.send();
+    
+    
+//     $(function() {
+//       $.ajax({
+//         dataType: "json",
+//         type: 'GET',
+//         url: 'https://screenshot-api.herokuapp.com/webshot?url=' + room + '&width=' + 1440,
+//         success: function(response) {
+
+//         },
+//         fail: function(xhr, textStatus, errorThrown) {
+//           alert('request failed');
+//         }
+//       });
+//     });
 
     // console.log(baseURLData)
 

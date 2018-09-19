@@ -190,7 +190,6 @@ h3 {
   font-weight: 300;
   margin:0;
 }
-
 @media screen and (max-width: 600px) {
   .block section {
     flex-direction: column;
